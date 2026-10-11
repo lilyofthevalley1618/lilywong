@@ -1,96 +1,186 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lily Wong · Electrical Engineering</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lily Wong — Electrical Engineering</title>
+<meta name="description" content="Lily Wong — electrical engineering student at Irvine Valley College.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect x=%224%22 y=%224%22 width=%228%22 height=%228%22 fill=%22%23a77bff%22/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0d1117;--panel:#151b24;--line:#232c3a;--text:#e6e9ef;--muted:#9aa4b2;--accent:#5eead4;--accent2:#818cf8}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
-  nav{position:sticky;top:0;background:rgba(13,17,23,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
-  nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 24px}
-  nav .brand{font-weight:700;letter-spacing:.5px}
-  nav ul{display:flex;gap:22px;list-style:none;font-size:.92rem}
-  nav ul a{color:var(--muted)} nav ul a:hover{color:var(--text);text-decoration:none}
-  .wrap{max-width:1000px;margin:0 auto}
-  section{padding:80px 24px;border-bottom:1px solid var(--line)}
-  .hero{padding:120px 24px 100px}
-  .hero h1{font-size:3rem;line-height:1.1;margin-bottom:12px}
-  .hero h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent}
-  .hero p.lead{font-size:1.2rem;color:var(--muted);max-width:640px}
-  .btns{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
-  .btn{padding:10px 18px;border-radius:8px;border:1px solid var(--line);color:var(--text);font-size:.95rem}
-  .btn.primary{background:var(--accent);color:#0d1117;border-color:var(--accent);font-weight:600}
-  .btn:hover{text-decoration:none;opacity:.9}
-  h2{font-size:1.6rem;margin-bottom:8px}
-  .sub{color:var(--muted);margin-bottom:32px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px}
-  .card h3{font-size:1.1rem;margin-bottom:6px}
-  .card p{color:var(--muted);font-size:.95rem}
-  .tag{display:inline-block;font-size:.75rem;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:2px 10px;margin:12px 6px 0 0}
-  .placeholder{border-style:dashed;opacity:.75}
-  .placeholder h3::after{content:" · placeholder";color:#f59e0b;font-size:.75rem;font-weight:400}
-  .skills{display:flex;flex-wrap:wrap;gap:10px}
-  .skills span{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-size:.9rem}
-  .timeline .item{border-left:2px solid var(--line);padding:0 0 24px 20px;position:relative}
-  .timeline .item::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
-  .timeline .item small{color:var(--muted)}
-  footer{padding:40px 24px;text-align:center;color:var(--muted);font-size:.9rem}
-  @media(max-width:640px){nav ul{display:none}.hero h1{font-size:2.2rem}}
-</style>
-</head>
-<body>
-<nav><div class="wrap"><div class="brand">Lily Wong</div>
-<ul><li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li><li><a href="#research">Research</a></li><li><a href="#resume">Resume</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
+:root{--bg:#000;--panel:#0a0910;--line:#1d1a26;--line2:#2c2838;--white:#f2f0f7;--grey:#8c889a;--grey2:#5c586a;
+--accent:#a77bff;--accent2:#7aa2ff;--soft:#c9b6f2;--dim:rgba(167,123,255,.12);--glow:rgba(167,123,255,.35);
+--display:'Chakra Petch',system-ui,sans-serif;--sans:'Space Grotesk',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--max:1180px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--white);font-family:var(--sans);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:#000}a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,4vw,56px);position:relative;z-index:2}
+.mono{font-family:var(--mono)}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:none}
+.logo{display:flex;align-items:center;gap:10px;font-size:.92rem;font-weight:500}.logo i{width:8px;height:8px;background:var(--accent);box-shadow:0 0 10px var(--glow)}
+nav ul{display:flex;gap:30px;list-style:none}nav a{font-size:.86rem;color:#d6d2e2;position:relative;transition:color .25s}
+nav ul a::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:var(--accent);transition:width .3s cubic-bezier(.2,.8,.2,1)}
+nav ul a:hover{color:#fff}nav ul a:hover::after,nav ul a.on::after{width:100%}
+/* hero */
+.hero{position:relative;min-height:100vh;display:grid;align-content:center;overflow:hidden;
+background:radial-gradient(ellipse 60% 70% at 70% 45%,#1a1230 0%,#0c0818 40%,#000 80%)}
+.hero .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(167,123,255,.18) 1px,transparent 1px);background-size:26px 26px;
+mask-image:radial-gradient(ellipse 70% 70% at 65% 45%,#000 0%,rgba(0,0,0,.3) 55%,transparent 85%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 65% 45%,#000 0%,rgba(0,0,0,.3) 55%,transparent 85%)}
+.blueprint{position:absolute;inset:60px 0 0 0;width:100%;height:calc(100% - 60px);opacity:.55;pointer-events:none}
+.blueprint .tr{stroke-dasharray:6 10;animation:flow 6s linear infinite}@keyframes flow{to{stroke-dashoffset:-160}}
+.viewport{position:absolute;inset:76px 30px 30px;pointer-events:none}
+.viewport .c{position:absolute;width:20px;height:20px;border:1px solid var(--line2)}
+.c.tl{top:0;left:0;border-right:0;border-bottom:0}.c.tr{top:0;right:0;border-left:0;border-bottom:0}.c.bl{bottom:0;left:0;border-right:0;border-top:0}.c.br{bottom:0;right:0;border-left:0;border-top:0}
+.vp-label{position:absolute;top:-4px;left:50%;transform:translateX(-50%);font:400 .64rem var(--mono);letter-spacing:.24em;color:var(--accent);opacity:.7;background:#0b0912;padding:2px 8px;border:1px solid var(--line)}
+.chip{position:absolute;right:7%;top:50%;width:min(30vw,380px);aspect-ratio:1;transform:translateY(-50%);pointer-events:none}
+.hero h1{font-family:var(--display);font-weight:600;font-size:clamp(3rem,6.4vw,5.6rem);line-height:1;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+.hero h1,.hero .sub>*{opacity:0;transform:translateY(22px);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero .sub b{animation-delay:.15s}.hero .sub span{animation-delay:.3s}.hero .sub em{animation-delay:.45s}
+@keyframes up{to{opacity:1;transform:none}}
+.hero .sub{margin-top:30px;display:grid;gap:14px}
+.hero .sub b{font-family:var(--display);font-weight:500;font-size:clamp(1.2rem,2vw,1.6rem);letter-spacing:.05em;text-transform:uppercase;color:var(--soft)}
+.hero .sub span{font:400 clamp(.95rem,1.5vw,1.2rem)/1.7 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--grey);max-width:560px}
+.hero .sub em{font-style:normal;display:flex;gap:12px;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid var(--line2);font:500 .74rem var(--mono);letter-spacing:.14em;text-transform:uppercase;transition:all .3s;background:transparent;color:var(--white);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset,0 0 24px var(--dim)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:#000}.btn.solid:hover{background:transparent;color:var(--accent)}
+.scroll-cue{position:absolute;bottom:44px;left:50%;transform:translateX(-50%);font:400 .68rem var(--mono);letter-spacing:.24em;color:var(--grey2);text-transform:uppercase;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+/* sections */
+section{position:relative;padding:120px 0;border-top:1px solid var(--line)}
+.s-corners{position:absolute;inset:24px 30px;pointer-events:none;z-index:1}.s-corners i{position:absolute;width:16px;height:16px;border:1px solid var(--line2)}
+.s-corners .tl{top:0;left:0;border-right:0;border-bottom:0}.s-corners .tr{top:0;right:0;border-left:0;border-bottom:0}.s-corners .bl{bottom:0;left:0;border-right:0;border-top:0}.s-corners .br{bottom:0;right:0;border-left:0;border-top:0}
+.s-label{position:absolute;top:-6px;left:28px;font:400 .62rem var(--mono);letter-spacing:.24em;color:var(--grey2)}
+.sec-head{text-align:center;margin-bottom:64px}.sec-head h2{font-family:var(--display);font-weight:600;font-size:clamp(2rem,3.6vw,2.9rem);text-transform:uppercase;letter-spacing:.01em;line-height:1.1}
+.sec-head p{color:var(--grey);margin-top:12px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}.reveal.in{opacity:1;transform:none}
+/* about + 3d */
+#about{min-height:100vh;overflow:hidden;cursor:crosshair}
+.uav-bg{position:absolute;inset:0;z-index:0}.uav-bg canvas{display:block;width:100%!important;height:100%!important}
+#about::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#000 0%,transparent 18%,transparent 80%,#000 100%)}
+.about{display:grid;grid-template-columns:1.25fr 1fr;gap:70px;align-items:start}
+.about .lead{font-size:1.24rem;line-height:1.65;color:#ebe8f3;margin-bottom:22px}.about p{color:#a9a5b8;margin-bottom:16px;max-width:560px}
+.hint{font:400 .68rem var(--mono);letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-top:20px;opacity:.8}
+.about-text{background:rgba(4,3,8,.94);border:1px solid var(--line);padding:28px;position:relative;z-index:3;cursor:default}.spec{position:relative;z-index:3;background:rgba(10,9,16,.96);border:1px solid var(--line2);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);margin-top:120px;cursor:default}
+.spec>div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:18px 20px;border-bottom:1px solid var(--line)}.spec>div:last-child{border:0}
+.spec .k{font:400 .66rem var(--mono);letter-spacing:.12em;color:var(--grey);text-transform:uppercase;padding-top:3px}.spec .v{font-size:.92rem}
+/* timeline */
+.entry{display:grid;grid-template-columns:240px 1fr;gap:40px;padding:34px 0;border-top:1px solid var(--line);transition:background .3s}
+.entry:hover{background:linear-gradient(90deg,var(--dim),transparent 60%)}
+.entry .when{font:400 .78rem var(--mono);color:var(--accent);letter-spacing:.06em;padding-left:14px}
+.entry h3{font-family:var(--display);font-weight:600;font-size:1.35rem}.entry .org{color:var(--soft);font-size:.95rem;margin:2px 0 10px}.entry p{color:#a9a5b8;max-width:640px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.tags span{font:400 .7rem var(--mono);letter-spacing:.06em;padding:5px 10px;border:1px solid var(--line2);color:#cfcadb;transition:.25s}.tags span:hover{border-color:var(--accent);color:var(--accent)}
+.ph{border:1px dashed var(--line2);padding:22px;color:var(--grey);font:400 .82rem var(--mono);letter-spacing:.04em;background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(167,123,255,.03) 10px 20px)}
+.ph b{color:var(--accent);font-weight:500;letter-spacing:.14em;display:block;margin-bottom:6px;font-size:.68rem}
+/* projects */
+.projects{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line2)}
+.proj{padding:26px;border-right:1px solid var(--line2);transition:background .35s;display:flex;flex-direction:column}.proj:last-child{border-right:0}
+.proj:hover{background:#08070d}
+.proj .meta{display:flex;justify-content:space-between;font:400 .74rem var(--mono);color:var(--grey);margin-bottom:22px}.proj .meta .st{color:var(--accent)}
+.media{position:relative;aspect-ratio:16/9;border:1px solid var(--line2);overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#160f28,#050409 70%)}
+.media svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.8,.2,1)}.proj:hover .media svg{transform:scale(1.04)}
+.media .lbl{position:absolute;left:14px;top:12px;font:400 .62rem var(--mono);letter-spacing:.2em;color:var(--grey);text-transform:uppercase}
+.proj h3{font-family:var(--display);font-weight:600;font-size:1.45rem;margin:24px 0 10px}.proj p{color:#a9a5b8;font-size:.96rem}
+.proj .acts{margin-top:auto;padding-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.contact .big{font-family:var(--display);font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.05;text-transform:uppercase;font-weight:600}
+.contact .big span{color:var(--accent)}
+.links{border:1px solid var(--line2)}.links a{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line2);transition:.3s}
+.links a:last-child{border:0}.links a .k{font:400 .66rem var(--mono);letter-spacing:.16em;color:var(--grey);text-transform:uppercase}
+.links a .v{font-size:1.02rem}.links a .arr{color:var(--grey2);transition:transform .3s,color .3s}
+.links a:hover{background:var(--dim)}.links a:hover .arr{transform:translateX(6px);color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex;justify-content:space-between;font-size:.74rem;color:var(--grey2)}
+@media (max-width:880px){nav ul{display:none}.chip{opacity:.25;right:-10%;width:80vw}.hero h1{white-space:normal}
+.about,.contact,.entry,.projects{grid-template-columns:1fr}.proj{border-right:0;border-bottom:1px solid var(--line2)}.spec{margin-top:20px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.hero h1,.hero .sub>*{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style></head><body>
+<nav><div class="wrap"><a href="#top" class="logo"><i></i>L. Wong</a>
+<ul><li><a href="#about">About</a></li><li><a href="#experience">Education &amp; Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#research">Research</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
 
-<header class="hero"><div class="wrap">
-  <h1>Hi, I'm Lily.<br><span>Electrical engineering student.</span></h1>
-  <p class="lead">I study electrical engineering at Irvine Valley College and build learning tools and apps on the side. I'm interested in digital design, PCB design, and AI.</p>
-  <div class="btns"><a class="btn primary" href="#projects">See my projects</a><a class="btn" href="#resume">Resume</a><a class="btn" href="https://github.com/lilyofthevalley1618">GitHub</a></div>
-</div></header>
+<header class="hero" id="top">
+<div class="dots" aria-hidden="true"></div>
+<svg class="blueprint" viewBox="0 0 1280 740" preserveAspectRatio="xMidYMid slice" aria-hidden="true" fill="none" stroke="#a77bff" stroke-width="1">
+ <g opacity=".35"><path d="M640 120h560M640 620h560M700 80v600M1180 80v600" stroke-dasharray="2 6"/></g>
+ <g opacity=".5" font-family="IBM Plex Mono,monospace" font-size="10" fill="#a77bff" stroke="none"><text x="712" y="112">U1 — MCU</text><text x="1060" y="650">SECTION A-A</text><text x="980" y="112">R1 10k</text><text x="1100" y="430">C3 0.1µF</text></g>
+ <g opacity=".45"><path d="M960 150h20l6-10 12 20 12-20 12 20 12-20 6 10h20"/><path d="M1120 470v30M1100 500h40M1100 512h40M1120 512v30M1108 548h24"/></g>
+ <g class="tr" stroke="#7aa2ff" opacity=".55"><path d="M700 420h120l40-40h80"/><path d="M760 560h140l30 30h120"/><path d="M1180 200h-70l-30-30h-60"/></g>
+</svg>
+<svg class="chip" viewBox="0 0 400 400" aria-hidden="true" fill="none" stroke="#b9b4c8">
+ <g opacity=".22"><rect x="110" y="110" width="180" height="180" rx="6"/><rect x="140" y="140" width="120" height="120" stroke-dasharray="3 5"/><circle cx="128" cy="128" r="5"/>
+ <g id="pins"></g></g>
+ <text x="200" y="206" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#a77bff" stroke="none" opacity=".7" letter-spacing="3">LW-2028</text>
+</svg>
+<div class="viewport" aria-hidden="true"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i><span class="vp-label">FIG. 01 — L. WONG</span></div>
+<div class="wrap" style="max-width:none;margin:0;padding-left:clamp(24px,6vw,96px)"><h1>Lily Wong</h1>
+<p class="sub"><b>Electrical Engineering</b><span>Student at Irvine Valley College</span>
+<em><a class="btn solid" href="#projects">View projects →</a><a class="btn" href="#contact">Contact</a></em></p></div>
+<div class="scroll-cue" aria-hidden="true">Scroll ↓</div>
+</header>
 
-<section id="about"><div class="wrap">
-  <h2>About</h2>
-  <p class="sub">Irvine, CA · Electrical engineering pathway at IVC, finishing May 2028, then transferring to a UC.</p>
-  <div class="timeline">
-    <div class="item"><strong>Irvine Valley College</strong> · Electrical Engineering pathway<br><small>2026 – expected May 2028</small></div>
-    <div class="item"><strong>California Certificate of Proficiency (HiSET)</strong><br><small>May 2026</small></div>
-  </div>
-  <h3 style="margin:24px 0 12px">Skills and interests</h3>
-  <div class="skills"><span>Digital design</span><span>PCB design</span><span>Schematics</span><span>MATLAB</span><span>AI</span><span>App building with AI tools</span></div>
+<section id="about">
+<div class="uav-bg" id="planeScene" aria-hidden="true"></div>
+<div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 02 — ABOUT</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+<div class="wrap"><div class="sec-head reveal"><h2>Background, path, and interests.</h2></div>
+<div class="about reveal"><div class="about-text">
+<p class="lead">I'm an electrical engineering student at Irvine Valley College on the EE pathway, finishing in May 2028 and then transferring to a UC.</p>
+<p>I earned my California Certificate of Proficiency (HiSET) in May 2026. I'm interested in digital design, PCB design, schematics, MATLAB, and AI.</p>
+<div class="ph"><b>PLACEHOLDER — ABOUT</b>A few more sentences in Lily's own words about what got her into engineering and what she wants to build.</div>
+<p class="hint">◎ Move your cursor to steer · click to fire</p>
+</div>
+<div class="spec">
+<div><span class="k">Current</span><span class="v">Irvine Valley College — Electrical Engineering pathway</span></div>
+<div><span class="k">Timeline</span><span class="v">Finishing May 2028 → transfer to a UC</span></div>
+<div><span class="k">Certificate</span><span class="v">CA Certificate of Proficiency (HiSET), May 2026</span></div>
+<div><span class="k">Location</span><span class="v">Irvine, California</span></div>
+<div><span class="k">Interests</span><span class="v">Digital Design · PCB Design · Schematics · MATLAB · AI</span></div>
+</div></div></div></section>
+
+<section id="experience">
+<div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 03 — EDUCATION &amp; EXPERIENCE</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+<div class="wrap"><div class="sec-head reveal"><h2>Education and experience.</h2></div>
+<div class="entry reveal"><div class="when">Present — May 2028</div><div><h3>Irvine Valley College</h3><div class="org">Electrical Engineering pathway · then UC transfer</div>
+<div class="ph"><b>PLACEHOLDER — COURSEWORK</b>Relevant courses, honors, or clubs.</div>
+<div class="tags"><span>Digital Design</span><span>PCB Design</span><span>Schematics</span><span>MATLAB</span><span>AI</span></div></div></div>
+<div class="entry reveal"><div class="when">May 2026</div><div><h3>CA Certificate of Proficiency</h3><div class="org">HiSET</div></div></div>
+<div class="entry reveal"><div class="when">— — —</div><div><h3>Experience</h3><div class="ph"><b>PLACEHOLDER — EXPERIENCE</b>Roles, internships, or volunteer work go here.</div></div></div>
 </div></section>
 
-<section id="projects"><div class="wrap">
-  <h2>Projects</h2>
-  <p class="sub">Apps I've designed and built by directing AI tools.</p>
-  <div class="grid">
-    <div class="card"><h3>Zapling</h3><p>A Duolingo-style app for learning electrical engineering, with a Circuit Lab, bite-size lessons, and Sprig, a built-in helper.</p><span class="tag">EE education</span><span class="tag">Web app</span><p style="margin-top:14px"><a href="https://lilyofthevalley1618.github.io/zapling/">Open Zapling</a></p></div>
-    <div class="card"><h3>Electrical Components Game</h3><p>A game that teaches the parts of a circuit (resistors, capacitors, transistors, and more).</p><span class="tag">Game</span><span class="tag">EE education</span><p style="margin-top:14px;color:#f59e0b;font-size:.85rem">Link and details to come</p></div>
-  </div>
-</div></section>
+<section id="projects">
+<div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 04 — PROJECTS</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+<div class="wrap"><div class="sec-head reveal"><h2>Current projects.</h2><p>Things I've built by directing AI.</p></div>
+<div class="projects reveal">
+<article class="proj"><div class="meta"><span>Live</span><span class="st">Web app</span></div>
+<div class="media"><span class="lbl">Zapling — Circuit Lab</span>
+<svg viewBox="0 0 320 180" fill="none" stroke="#a77bff"><g opacity=".75"><path d="M60 50h80l6-8 10 16 10-16 10 16 6-8h60v80H60z"/><circle cx="60" cy="90" r="12"/><path d="M54 90h12M60 84v12"/><path d="M180 130v-14h20v14M190 116v-10"/></g><g stroke="#7aa2ff" class="tr" stroke-dasharray="4 8"><path d="M72 50h68M60 130h180"/></g><circle cx="250" cy="50" r="18" opacity=".5"/><path d="M243 50l5 5 10-10" stroke="#7aa2ff"/></svg></div>
+<h3>Zapling</h3><p>A Duolingo-style electrical engineering learning app with a Circuit Lab, lessons, and Sprig, a built-in helper.</p>
+<div class="acts"><a class="btn" href="https://lilyofthevalley1618.github.io/zapling/" target="_blank" rel="noopener">Open Zapling ↗</a></div></article>
+<article class="proj"><div class="meta"><span>In development</span><span class="st">Game</span></div>
+<div class="media"><span class="lbl">Components game</span>
+<svg viewBox="0 0 320 180" fill="none" stroke="#a77bff"><g opacity=".75"><rect x="40" y="60" width="60" height="60" rx="4"/><path d="M58 90h24l-12-14z"/><rect x="130" y="60" width="60" height="60" rx="4"/><path d="M145 90h8l4-8 6 16 6-16 4 8h4"/><rect x="220" y="60" width="60" height="60" rx="4"/><path d="M240 76v28M250 76v28M226 90h14M250 90h14"/></g><text x="160" y="150" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#7aa2ff" stroke="none" letter-spacing="2">MATCH THE PART</text></svg></div>
+<h3>Electrical Components Game</h3><p>A game that teaches circuit parts.</p>
+<div class="acts"><span class="btn" style="opacity:.55;cursor:default">Link coming soon</span></div></article>
+</div></div></section>
 
-<section id="experience"><div class="wrap">
-  <h2>Experience</h2><p class="sub">Work, internships, and leadership.</p>
-  <div class="grid"><div class="card placeholder"><h3>Role title</h3><p>Organization · Dates<br>One or two lines on what you did and what you learned.</p></div></div>
-</div></section>
+<section id="research">
+<div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 05 — RESEARCH</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+<div class="wrap"><div class="sec-head reveal"><h2>Research &amp; resume.</h2></div>
+<div class="contact reveal"><div class="ph"><b>PLACEHOLDER — RESEARCH</b>Prior engineering research: title, where, and what Lily did.</div>
+<div class="ph"><b>PLACEHOLDER — RESUME</b>A "Download resume" button appears here once the PDF is ready.</div></div></div></section>
 
-<section id="research"><div class="wrap">
-  <h2>Engineering research</h2><p class="sub">Research and independent investigations.</p>
-  <div class="grid"><div class="card placeholder"><h3>Research topic</h3><p>Where and when · What question you explored, what you did, and what you found.</p></div></div>
-</div></section>
+<section id="contact">
+<div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 06 — CONTACT</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+<div class="wrap"><div class="contact reveal"><div><p class="big">Let's build<br><span>something.</span></p><p style="color:var(--grey);margin-top:20px;max-width:420px">Open to internships, research, and engineering projects.</p></div>
+<div class="links"><a href="mailto:lilypop1618@gmail.com"><span><span class="k">Email</span><br><span class="v">lilypop1618@gmail.com</span></span><span class="arr">→</span></a>
+<a href="https://github.com/lilyofthevalley1618" target="_blank" rel="noopener"><span><span class="k">GitHub</span><br><span class="v">lilyofthevalley1618</span></span><span class="arr">→</span></a></div></div></div></section>
+<footer><div class="wrap"><span class="mono">© 2026 Lily Wong</span><span class="mono">Irvine, CA</span></div></footer>
 
-<section id="resume"><div class="wrap">
-  <h2>Resume</h2><p class="sub">A downloadable PDF will go here once it's ready.</p>
-  <div class="card placeholder"><h3>Resume PDF</h3><p>Upload resume.pdf and this becomes a download button.</p></div>
-</div></section>
-
-<section id="contact"><div class="wrap">
-  <h2>Contact</h2><p class="sub">Open to internships and research opportunities.</p>
-  <div class="btns"><a class="btn primary" href="mailto:lilypop1618@gmail.com">lilypop1618@gmail.com</a><a class="btn" href="https://github.com/lilyofthevalley1618">GitHub</a></div>
-</div></section>
-
-<footer>© 2026 Lily Wong</footer>
+<script>
+// chip pins
+(function(){var g=document.getElementById('pins'),s='';for(var i=0;i<8;i++){var p=125+i*21;s+='<path d="M'+p+' 110v-30M'+p+' 290v30M110 '+p+'h-30M290 '+p+'h30"/>';}g.innerHTML=s;})();
+// reveals + active nav
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+var navA=document.querySelectorAll('nav ul a');
+new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)navA.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-45% 0px -50% 0px'}).observe&&document.querySelectorAll('section[id]').forEach(function(s){this.observe(s)},new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)navA.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-45% 0px -50% 0px'}));
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="plane.js"></script>
 </body></html>
