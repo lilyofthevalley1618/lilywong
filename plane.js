@@ -51,18 +51,19 @@ function boom(at){var g=new THREE.Group();g.position.copy(at);
  pg.setAttribute('position',new THREE.BufferAttribute(pp,3));var pt=new THREE.Points(pg,new THREE.PointsMaterial({color:Math.random()<.5?PUR:BLU,size:.06,transparent:true}));g.add(pt);
  scene.add(g);booms.push({g:g,fl:fl,rg:rg,pt:pt,pv:pv,t:0});}
 var sec=document.getElementById('about');
-sec.addEventListener('click',function(e){if(e.target.closest('a,button,.spec'))return;fire(toGround(e.clientX,e.clientY));});
-window.addEventListener('mousemove',function(e){aimT.copy(toGround(e.clientX,e.clientY));hasMouse=true;});
-document.documentElement.addEventListener('mouseleave',function(){hasMouse=false;});
+sec.addEventListener('click',function(e){if(e.target.closest('a,button'))return;fire(toGround(e.clientX,e.clientY));});
+sec.addEventListener('mousemove',function(e){aimT.copy(toGround(e.clientX,e.clientY));hasMouse=true;});
+sec.addEventListener('mouseleave',function(){hasMouse=false;});
+var scrollDrift=0,lastSY=scrollY;addEventListener('scroll',function(){scrollDrift=THREE.MathUtils.clamp(scrollDrift+(scrollY-lastSY)*.004,-2,2);lastSY=scrollY;},{passive:true});
 var visible=true;new IntersectionObserver(function(en){visible=en[0].isIntersecting;}).observe(host);
 var t=0,last=performance.now(),px=0,pz=2,py=2.3;
 function frame(now){requestAnimationFrame(frame);if(!visible){last=now;return;}
  var dt=Math.min((now-last)/1000,.05);last=now;if(!reduce)t+=dt;
- if(!hasMouse)aimT.set(Math.sin(t*.3)*5,0,1+Math.cos(t*.22)*3),aimT.y=terrH(aimT.x,aimT.z);
+ scrollDrift*=Math.pow(.3,dt);if(!hasMouse)aimT.set(Math.sin(t*.32)*6,0,Math.cos(t*.23)*3.5),aimT.y=terrH(aimT.x,aimT.z);
  aim.lerp(aimT,1-Math.pow(.002,dt));
- var wx=THREE.MathUtils.clamp(aim.x*.4,-1.2,1.2)+Math.sin(t*.7)*.3,wz=-3.2+Math.cos(t*.5)*.3;
+ var sd=scrollDrift;var wx=THREE.MathUtils.clamp(aim.x*.7,-3.6,3.6)+Math.sin(t*.7)*.3,wz=THREE.MathUtils.clamp(aim.z*.7+.3+sd,-1.4,2.4)+Math.cos(t*.5)*.3;
  var k=1-Math.pow(.55,dt),nx=px+(wx-px)*k,nz=pz+(wz-pz)*k,vx=(nx-px)/dt,vz=(nz-pz)/dt;px=nx;pz=nz;
- var ny=py+((3.4+Math.sin(t*.8)*.15)-py)*k;var vy=(ny-py)/dt;py=ny;plane.position.set(px,py,pz);
+ var ny=py+((2.4+Math.sin(t*.8)*.15)-py)*k;var vy=(ny-py)/dt;py=ny;plane.position.set(px,py,pz);
  // nose toward aim point: yaw + pitch, bank on turns
  var dx=aim.x-px,dz=aim.z-pz,dy=aim.y-py,head=Math.atan2(-dz,dx);var dyaw=Math.atan2(Math.sin(head-plane.rotation.y),Math.cos(head-plane.rotation.y));
  plane.rotation.order='YZX';plane.rotation.y+=dyaw*Math.min(dt*2.2,1);

@@ -53,12 +53,12 @@ section{position:relative;padding:120px 0;border-top:1px solid var(--line)}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}.reveal.in{opacity:1;transform:none}
 /* about + 3d */
 #about{min-height:100vh;overflow:hidden;cursor:crosshair}
-.uav-bg{position:absolute;inset:0;z-index:0}.uav-bg canvas{display:block;width:100%!important;height:100%!important}
+.uav-bg{position:absolute;inset:0;z-index:0;pointer-events:none}.s-corners,.hero .dots,.viewport,#about::after{pointer-events:none}.uav-bg canvas{display:block;width:100%!important;height:100%!important}
 #about::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#000 0%,transparent 18%,transparent 80%,#000 100%)}
 .about{display:grid;grid-template-columns:1.25fr 1fr;gap:70px;align-items:start}
 .about .lead{font-size:1.24rem;line-height:1.65;color:#ebe8f3;margin-bottom:22px}.about p{color:#a9a5b8;margin-bottom:16px;max-width:560px}
 .hint{font:400 .68rem var(--mono);letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-top:20px;opacity:.8}
-.about-text{background:rgba(4,3,8,.94);border:1px solid var(--line);padding:28px;position:relative;z-index:3;cursor:default}.spec{position:relative;z-index:3;background:rgba(10,9,16,.96);border:1px solid var(--line2);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);margin-top:120px;cursor:default}
+.about-text{cursor:crosshair;background:rgba(4,3,8,.82);border:1px solid var(--line);padding:28px;position:relative;z-index:3}.spec{position:relative;z-index:3;background:rgba(10,9,16,.84);border:1px solid var(--line2);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);margin-top:120px;cursor:default}
 .spec>div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:18px 20px;border-bottom:1px solid var(--line)}.spec>div:last-child{border:0}
 .spec .k{font:400 .66rem var(--mono);letter-spacing:.12em;color:var(--grey);text-transform:uppercase;padding-top:3px}.spec .v{font-size:.92rem}
 /* timeline */
