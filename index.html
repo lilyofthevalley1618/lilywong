@@ -77,7 +77,7 @@ section{position:relative;padding:120px 0;border-top:1px solid var(--line)}
 .arm-box .hint{position:absolute;left:14px;bottom:10px;margin:0;z-index:2;pointer-events:none}
 @media (max-width:880px){.exp-grid{grid-template-columns:1fr}.arm-box{position:relative;top:0;height:380px}}
 /* projects */
-.media.shot{border-color:rgba(167,123,255,.45);box-shadow:0 0 0 1px rgba(167,123,255,.15),0 0 28px rgba(167,123,255,.18)}.media.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .5s;filter:saturate(.95) brightness(.92)}.proj:hover .media.shot img{transform:scale(1.05);filter:none}.proj:hover .media.shot{box-shadow:0 0 0 1px var(--accent),0 0 36px var(--glow)}
+.media.shot{background:#f4f2fe;border-color:rgba(167,123,255,.45);box-shadow:0 0 0 1px rgba(167,123,255,.15),0 0 28px rgba(167,123,255,.18)}.media.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 50%;background:#f4f2fe;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .5s;filter:saturate(.95) brightness(.92)}.proj:hover .media.shot img{transform:scale(1.05);filter:none}.proj:hover .media.shot{box-shadow:0 0 0 1px var(--accent),0 0 36px var(--glow)}
 
 #projects{overflow:hidden;cursor:crosshair}#projects::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#000 0%,transparent 16%,transparent 84%,#000 100%)}
 .projects{position:relative;z-index:3;background:rgba(4,3,8,.8);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}#projects .sec-head{position:relative;z-index:3}
@@ -167,7 +167,7 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 <div class="wrap"><div class="sec-head reveal"><h2>Current projects.</h2><p>Things I've built by directing AI.</p><p class="hint" style="margin-top:14px">◎ Move cursor to steer · click to boost</p></div>
 <div class="projects reveal">
 <article class="proj"><div class="meta"><span>Live</span><span class="st">Web app</span></div>
-<div class="media shot"><img src="assets/zapling.webp" alt="Zapling app: lesson path with Sprig" loading="lazy" width="1440" height="900"></div>
+<div class="media shot"><img src="assets/zapling.webp" alt="Zapling app: Unit 1 lesson path with Sprig" loading="lazy" width="3358" height="1789"></div>
 <h3>Zapling</h3><p>A Duolingo-style electrical engineering learning app with a Circuit Lab, lessons, and Sprig, a built-in helper.</p>
 <div class="acts"><a class="btn" href="https://lilyofthevalley1618.github.io/zapling/" target="_blank" rel="noopener">Open Zapling ↗</a></div></article>
 <article class="proj"><div class="meta"><span>In development</span><span class="st">Game</span></div>
