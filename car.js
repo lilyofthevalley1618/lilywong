@@ -68,39 +68,75 @@ wire([[.55,.18,.25],[.9,.22,.3],[1.18,.24,.3]]);wire([[-.55,.18,-.25],[-.95,.3,-
 [.26,-.26].forEach(function(z){var core=new THREE.ConeGeometry(.14,1.1,16,1,true);core.translate(0,-.55,0);var cm=new THREE.Mesh(core,glowM(0xd9c8ff,.14));cm.rotation.z=Math.PI/2;cm.position.set(1.21,.24,z);car.add(cm);
  var cn=new THREE.ConeGeometry(.5,2.3,24,1,true);cn.translate(0,-1.15,0);var b=new THREE.Mesh(cn,skinMat(.06));b.rotation.z=Math.PI/2;b.position.set(1.21,.24,z);car.add(b);});
 car.scale.setScalar(1.35);scene.add(car);
-// trail
-var TN=70,trail=[],tg=new THREE.BufferGeometry(),tp=new Float32Array(TN*3),tc=new Float32Array(TN*3);tg.setAttribute('position',new THREE.BufferAttribute(tp,3));tg.setAttribute('color',new THREE.BufferAttribute(tc,3));
-var tmat=new THREE.PointsMaterial({size:.3,vertexColors:true,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false});scene.add(new THREE.Points(tg,tmat));
-var lmat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:0,blending:THREE.AdditiveBlending});scene.add(new THREE.Line(tg,lmat));
-var cA=new THREE.Color(0xe6dcff),cB=new THREE.Color(PUR);
-// target ring
+// ---- trail: fixed ring buffer, reused every frame ----
+var TN=70,tp=new Float32Array(TN*3),tc=new Float32Array(TN*3),tg=new THREE.BufferGeometry();
+tg.setAttribute('position',new THREE.BufferAttribute(tp,3));tg.setAttribute('color',new THREE.BufferAttribute(tc,3));
+var tmat=new THREE.PointsMaterial({size:.26,vertexColors:true,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false});var tpts=new THREE.Points(tg,tmat);tpts.frustumCulled=false;scene.add(tpts);
+var lmat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:0,blending:THREE.AdditiveBlending});var tline=new THREE.Line(tg,lmat);tline.frustumCulled=false;scene.add(tline);
+var cA=new THREE.Color(0xe6dcff),cB=new THREE.Color(PUR),cT=new THREE.Color();
 var ret=new THREE.Mesh(new THREE.RingGeometry(.25,.28,40),new THREE.MeshBasicMaterial({color:BLU,transparent:true,opacity:.45,side:THREE.DoubleSide}));ret.rotation.x=-Math.PI/2;scene.add(ret);
-// input on whole section
-var ndc=new THREE.Vector2(),ray=new THREE.Raycaster(),gp=new THREE.Plane(new THREE.Vector3(0,1,0),0),mouse=null,boost=0,goal=null;
+// ---- input (whole section) ----
 var BX=3.7,BZ0=-2.0,BZ1=2.6;
-function ground(e){var r=host.getBoundingClientRect();ndc.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(ndc,cam);var h=new THREE.Vector3();if(!ray.ray.intersectPlane(gp,h))ray.ray.at(20,h);h.y=0;h.x=THREE.MathUtils.clamp(h.x,-BX,BX);h.z=THREE.MathUtils.clamp(h.z,BZ0,BZ1);return h;}
-sec.addEventListener('mousemove',function(e){mouse=ground(e);});sec.addEventListener('mouseleave',function(){mouse=null;});
-var snap=0,snapFrom=0;sec.addEventListener('click',function(e){if(e.target.closest('a,button'))return;goal=ground(e);boost=1;snap=.12;snapFrom=yaw;trail.length=0;});
-var scrollV=0,lsy=scrollY;addEventListener('scroll',function(){scrollV=Math.min(scrollV+Math.abs(scrollY-lsy)*.01,2);lsy=scrollY;},{passive:true});
+var ndc=new THREE.Vector2(),ray=new THREE.Raycaster(),gp=new THREE.Plane(new THREE.Vector3(0,1,0),0);
+var mouseRaw=new THREE.Vector3(),hasMouse=false,goal=new THREE.Vector3(),hasGoal=false,boostReq=0,boostClock=0;
+function ground(e,out){var r=host.getBoundingClientRect();ndc.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(ndc,cam);
+ if(!ray.ray.intersectPlane(gp,out))ray.ray.at(20,out);out.y=0;out.x=THREE.MathUtils.clamp(out.x,-BX,BX);out.z=THREE.MathUtils.clamp(out.z,BZ0,BZ1);return out;}
+sec.addEventListener('mousemove',function(e){ground(e,mouseRaw);hasMouse=true;});
+sec.addEventListener('mouseleave',function(){hasMouse=false;});
+sec.addEventListener('click',function(e){if(e.target.closest('a,button'))return;ground(e,goal);hasGoal=true;boostReq=1;boostClock=0;trailLive=0;});
+var scrollV=0,lsy=scrollY;addEventListener('scroll',function(){scrollV=Math.min(scrollV+Math.abs(scrollY-lsy)*.008,2);lsy=scrollY;},{passive:true});
 var visible=false;new IntersectionObserver(function(en){visible=en[0].isIntersecting;}).observe(host);
-var pos=new THREE.Vector3(-3,0,1),yaw=0,spd=1.5,t=0,last=performance.now();
-function frame(now){requestAnimationFrame(frame);if(!visible){last=now;return;}
- var dt=Math.min((now-last)/1000,.05);last=now;if(!reduce)t+=dt;scrollV*=Math.pow(.25,dt);boost*=Math.pow(.35,dt);
- var tgt=mouse?mouse.clone():new THREE.Vector3(Math.sin(t*.25)*4.2,0,.5+Math.sin(t*.5)*2);
- if(goal){tgt.copy(goal);if(pos.distanceTo(goal)<.5||boost<.08)goal=null;}
- var dist=pos.distanceTo(tgt),want=Math.atan2(-(tgt.z-pos.z),tgt.x-pos.x),d=Math.atan2(Math.sin(want-yaw),Math.cos(want-yaw));
- var steer;if(goal){steer=0;if(snap>0){snap-=dt;var u=1-Math.max(snap,0)/.12;var dd=Math.atan2(Math.sin(want-snapFrom),Math.cos(want-snapFrom));yaw=snapFrom+dd*u;}else yaw=want;spd=Math.max(spd,snap>0?spd:6);}
- else{steer=THREE.MathUtils.clamp(d,-.6,.6);if(dist<.5)steer*=.2;yaw+=steer*dt*1.7;}
- var vt=(mouse&&dist<1.2?.5:1.9)+scrollV*2.5+boost*6.5;spd+=(vt-spd)*Math.min(dt*1.8,1);
- pos.x+=Math.cos(yaw)*spd*dt;pos.z-=Math.sin(yaw)*spd*dt;pos.x=THREE.MathUtils.clamp(pos.x,-BX-.2,BX+.2);pos.z=THREE.MathUtils.clamp(pos.z,BZ0,BZ1);
- car.position.copy(pos);car.rotation.set(-steer*.04*Math.min(spd,3),yaw,boost*.05,'YXZ');
- wheels.forEach(function(w){w.w.rotation.z-=spd*dt/.24;if(w.front)w.g.rotation.y=steer*.6;});
- pulses.forEach(function(p){var u=(t*(.6+spd*.15)+p.o)%1;p.m.position.copy(p.c.getPointAt(u));p.m.material.opacity=Math.sin(u*Math.PI);});
- if(snap>0){trail.length=0;}
- trail.unshift(pos.clone().setY(.45).add(new THREE.Vector3(-Math.cos(yaw)*1.6,0,Math.sin(yaw)*1.6)));if(trail.length>TN)trail.pop();
- for(var i=0;i<TN;i++){var q=trail[Math.min(i,trail.length-1)];tp[i*3]=q.x;tp[i*3+1]=q.y;tp[i*3+2]=q.z;var f=Math.pow(1-i/TN,1.6),cc=cA.clone().lerp(cB,i/TN).multiplyScalar(f);tc[i*3]=cc.r;tc[i*3+1]=cc.g;tc[i*3+2]=cc.b;}
- tg.attributes.position.needsUpdate=true;tg.attributes.color.needsUpdate=true;var to=Math.min(1,boost*1.6+scrollV*.3);tmat.opacity=to;lmat.opacity=to;
- var rp=goal||mouse;ret.visible=!!rp;if(rp){ret.position.set(rp.x,.02,rp.z);ret.rotation.z+=dt;}
+// ---- wander path: closed Catmull-Rom loop ----
+var wander=new THREE.CatmullRomCurve3([[-3,0,1.6],[-1,0,2.2],[2,0,1.4],[3.3,0,-.4],[1.2,0,-1.6],[-1.6,0,-1.2],[-3.3,0,-.2]].map(function(a){return new THREE.Vector3(a[0],a[1],a[2]);}),true,'centripetal');
+var wu=0,wP=new THREE.Vector3();
+// ---- state (all reused) ----
+var pos=new THREE.Vector3(-3,0,1.6),yaw=0,spd=1.2,yawRate=0,steerA=0,roll=0,pitch=0,boostE=0,lastSpd=1.2,turnSign=1;
+var aim=new THREE.Vector3().copy(pos),raw=new THREE.Vector3(),tmp=new THREE.Vector3(),trailLive=0,t=0;
+for(var i=0;i<TN;i++){tp[i*3]=pos.x;tp[i*3+1]=.45;tp[i*3+2]=pos.z;}
+function ez(k,dt){return 1-Math.exp(-k*dt);}
+function sstep(a,b,x){x=THREE.MathUtils.clamp((x-a)/(b-a),0,1);return x*x*(3-2*x);}
+var clock=new THREE.Clock();window.__carLog=null;
+function frame(){requestAnimationFrame(frame);var dt=clock.getDelta();if(!visible)return;dt=Math.min(dt,1/30);t+=dt;
+ scrollV*=Math.exp(-2.5*dt);
+ // boost request: hold until arrival or 1.4s, then release; eased envelope
+ if(boostReq>0){boostClock+=dt;if(boostClock>1.4)boostReq=0;}
+ boostE+=(boostReq-boostE)*ez(boostReq>boostE?7:2.2,dt);
+ // raw target -> low-passed aim
+ if(hasGoal){raw.copy(goal);}else if(hasMouse){raw.copy(mouseRaw);}else{wu=(wu+dt*.035)%1;wander.getPointAt(wu,wP);raw.copy(wP);}
+ aim.lerp(raw,ez(hasGoal?14:hasMouse?3.5:2,dt));
+ tmp.subVectors(aim,pos);var dist=Math.hypot(tmp.x,tmp.z);
+ if(hasGoal&&dist<.6){hasGoal=false;boostReq=0;}
+ var want=Math.atan2(-tmp.z,tmp.x),err=Math.atan2(Math.sin(want-yaw),Math.cos(want-yaw));
+ // hysteresis: target almost directly behind -> keep turning the same way
+ if(Math.abs(err)>2.7){err=Math.abs(err)*turnSign;}else if(Math.abs(err)>.05){turnSign=err>0?1:-1;}
+ // dead zone: near the target, steering authority fades out
+ var near=hasGoal?1:sstep(.35,1.1,dist);
+ var maxRate=(1.5+10*boostE)*Math.max(.35,Math.min(1,spd/.9));
+ var wantRate=THREE.MathUtils.clamp(err*(3+12*boostE),-maxRate,maxRate)*near;
+ yawRate+=(wantRate-yawRate)*ez(8+10*boostE,dt);yaw+=yawRate*dt;
+ // speed: arrival easing, scroll and boost bonus
+ var aligned=.35+.65*Math.max(0,Math.cos(err));
+ var vt=(hasMouse||hasGoal?1.9*sstep(.4,1.8,dist):1.5)*aligned+scrollV*2+boostE*6.5*aligned;
+ spd+=(vt-spd)*ez(vt>spd?2.2+3*boostE:2.8,dt);
+ var acc=(spd-lastSpd)/Math.max(dt,1e-4);lastSpd=spd;
+ pos.x+=Math.cos(yaw)*spd*dt;pos.z-=Math.sin(yaw)*spd*dt;
+ pos.x=THREE.MathUtils.clamp(pos.x,-BX-.3,BX+.3);pos.z=THREE.MathUtils.clamp(pos.z,BZ0-.2,BZ1+.2);
+ // body: roll from lateral accel, pitch from longitudinal accel (smoothed)
+ roll+=(THREE.MathUtils.clamp(spd*yawRate*.035,-.12,.12)-roll)*ez(6,dt);
+ pitch+=(THREE.MathUtils.clamp(-acc*.012,-.06,.06)-pitch)*ez(5,dt);
+ car.position.copy(pos);car.rotation.set(roll,yaw,pitch,'YXZ');
+ // wheels from real speed; smoothed front steer
+ steerA+=(THREE.MathUtils.clamp(yawRate/Math.max(spd,.4)*.9,-.5,.5)-steerA)*ez(10,dt);
+ var spin=spd*dt/(.21*1.35);for(var w=0;w<wheels.length;w++){wheels[w].w.rotation.z-=spin;if(wheels[w].front)wheels[w].g.rotation.y=steerA;}
+ for(var q=0;q<pulses.length;q++){var p=pulses[q],u=(t*(.6+spd*.12)+p.o)%1;p.c.getPointAt(u,p.m.position);p.m.material.opacity=Math.sin(u*Math.PI);}
+ // trail: shift ring buffer, newest = rear of car; only segments laid down since the boost turn finished are lit
+ tp.copyWithin(3,0,(TN-1)*3);tp[0]=pos.x-Math.cos(yaw)*1.55;tp[1]=.45;tp[2]=pos.z+Math.sin(yaw)*1.55;
+ if(boostE>.05&&Math.abs(err)<.2)trailLive=Math.min(TN,trailLive+1);else if(boostE<.05)trailLive=0;
+ for(var k=0;k<TN;k++){var f=k<trailLive?Math.pow(1-k/TN,1.5):0;cT.copy(cA).lerp(cB,k/TN).multiplyScalar(f);tc[k*3]=cT.r;tc[k*3+1]=cT.g;tc[k*3+2]=cT.b;}
+ tg.attributes.position.needsUpdate=true;tg.attributes.color.needsUpdate=true;
+ var to=Math.min(1,boostE*1.4+scrollV*.25);tmat.opacity=to;lmat.opacity=to;
+ ret.visible=hasGoal||hasMouse;if(ret.visible){ret.position.set(aim.x,.02,aim.z);ret.rotation.z+=dt;}
+ if(window.__carLog)window.__carLog.push(performance.now(),pos.x,pos.z,yaw,dt);
  R.render(scene,cam);}
 requestAnimationFrame(frame);
 })();
