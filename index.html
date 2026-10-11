@@ -69,6 +69,13 @@ section{position:relative;padding:120px 0;border-top:1px solid var(--line)}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.tags span{font:400 .7rem var(--mono);letter-spacing:.06em;padding:5px 10px;border:1px solid var(--line2);color:#cfcadb;transition:.25s}.tags span:hover{border-color:var(--accent);color:var(--accent)}
 .ph{border:1px dashed var(--line2);padding:22px;color:var(--grey);font:400 .82rem var(--mono);letter-spacing:.04em;background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(167,123,255,.03) 10px 20px)}
 .ph b{color:var(--accent);font-weight:500;letter-spacing:.14em;display:block;margin-bottom:6px;font-size:.68rem}
+.exp-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:start}
+.exp-grid .entry{grid-template-columns:130px 1fr;gap:22px;background:rgba(4,3,8,.94);position:relative;z-index:3}
+.arm-box{position:sticky;top:90px;height:540px;border:1px solid var(--line2);background:radial-gradient(ellipse at 50% 70%,#120c22,#020104 75%);cursor:crosshair;overflow:hidden}
+.arm-box canvas{display:block;width:100%!important;height:100%!important}
+.arm-box .lbl{position:absolute;left:14px;top:12px;font:400 .62rem var(--mono);letter-spacing:.2em;color:var(--grey);z-index:2;pointer-events:none}
+.arm-box .hint{position:absolute;left:14px;bottom:10px;margin:0;z-index:2;pointer-events:none}
+@media (max-width:880px){.exp-grid{grid-template-columns:1fr}.arm-box{position:relative;top:0;height:380px}}
 /* projects */
 .projects{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line2)}
 .proj{padding:26px;border-right:1px solid var(--line2);transition:background .35s;display:flex;flex-direction:column}.proj:last-child{border-right:0}
@@ -135,13 +142,19 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 
 <section id="experience">
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 03 — EDUCATION &amp; EXPERIENCE</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
-<div class="wrap"><div class="sec-head reveal"><h2>Education and experience.</h2></div>
+<div class="wrap"><div class="sec-head reveal"><h2>Education and experience.</h2>
+<div style="margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:8px">
+<!-- RESUME LINK GOES HERE: replace href="#" with the resume PDF (e.g. href="Lily_Wong_Resume.pdf" target="_blank"), remove aria-disabled/onclick/style, and delete the "coming soon" note -->
+<a class="btn" href="#" aria-disabled="true" title="Coming soon" onclick="return false" style="opacity:.6;cursor:not-allowed">Official Resume ↓</a>
+<span class="mono" style="font-size:.64rem;letter-spacing:.2em;color:var(--grey2);text-transform:uppercase">Coming soon</span></div></div>
+<div class="exp-grid"><div>
 <div class="entry reveal"><div class="when">Present — May 2028</div><div><h3>Irvine Valley College</h3><div class="org">Electrical Engineering pathway · then UC transfer</div>
 <div class="ph"><b>PLACEHOLDER — COURSEWORK</b>Relevant courses, honors, or clubs.</div>
 <div class="tags"><span>Digital Design</span><span>PCB Design</span><span>Schematics</span><span>MATLAB</span><span>AI</span></div></div></div>
 <div class="entry reveal"><div class="when">May 2026</div><div><h3>CA Certificate of Proficiency</h3><div class="org">HiSET</div></div></div>
 <div class="entry reveal"><div class="when">— — —</div><div><h3>Experience</h3><div class="ph"><b>PLACEHOLDER — EXPERIENCE</b>Roles, internships, or volunteer work go here.</div></div></div>
-</div></section>
+</div>
+<div class="arm-box reveal" id="armScene"><span class="lbl">FIG. 03B — 5-AXIS MANIPULATOR</span><p class="hint">◎ Move cursor to guide · click to grab</p></div></div></div></section>
 
 <section id="projects">
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 04 — PROJECTS</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
@@ -183,4 +196,5 @@ new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="plane.js"></script>
+<script src="arm.js"></script>
 </body></html>
