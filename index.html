@@ -77,6 +77,11 @@ section{position:relative;padding:120px 0;border-top:1px solid var(--line)}
 .arm-box .hint{position:absolute;left:14px;bottom:10px;margin:0;z-index:2;pointer-events:none}
 @media (max-width:880px){.exp-grid{grid-template-columns:1fr}.arm-box{position:relative;top:0;height:380px}}
 /* projects */
+.media.shot{border-color:rgba(167,123,255,.45);box-shadow:0 0 0 1px rgba(167,123,255,.15),0 0 28px rgba(167,123,255,.18)}.media.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .5s;filter:saturate(.95) brightness(.92)}.proj:hover .media.shot img{transform:scale(1.05);filter:none}.proj:hover .media.shot{box-shadow:0 0 0 1px var(--accent),0 0 36px var(--glow)}
+
+#projects{overflow:hidden;cursor:crosshair}#projects::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#000 0%,transparent 16%,transparent 84%,#000 100%)}
+.projects{position:relative;z-index:3;background:rgba(4,3,8,.8);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}#projects .sec-head{position:relative;z-index:3}
+
 .projects{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line2)}
 .proj{padding:26px;border-right:1px solid var(--line2);transition:background .35s;display:flex;flex-direction:column}.proj:last-child{border-right:0}
 .proj:hover{background:#08070d}
@@ -157,12 +162,12 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 <div class="arm-box reveal" id="armScene"><span class="lbl">FIG. 03B — 5-AXIS MANIPULATOR</span><p class="hint">◎ Move cursor to guide · click to grab</p></div></div></div></section>
 
 <section id="projects">
+<div class="uav-bg" id="carScene" aria-hidden="true"></div>
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 04 — PROJECTS</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
-<div class="wrap"><div class="sec-head reveal"><h2>Current projects.</h2><p>Things I've built by directing AI.</p></div>
+<div class="wrap"><div class="sec-head reveal"><h2>Current projects.</h2><p>Things I've built by directing AI.</p><p class="hint" style="margin-top:14px">◎ Move cursor to steer · click to boost</p></div>
 <div class="projects reveal">
 <article class="proj"><div class="meta"><span>Live</span><span class="st">Web app</span></div>
-<div class="media"><span class="lbl">Zapling — Circuit Lab</span>
-<svg viewBox="0 0 320 180" fill="none" stroke="#a77bff"><g opacity=".75"><path d="M60 50h80l6-8 10 16 10-16 10 16 6-8h60v80H60z"/><circle cx="60" cy="90" r="12"/><path d="M54 90h12M60 84v12"/><path d="M180 130v-14h20v14M190 116v-10"/></g><g stroke="#7aa2ff" class="tr" stroke-dasharray="4 8"><path d="M72 50h68M60 130h180"/></g><circle cx="250" cy="50" r="18" opacity=".5"/><path d="M243 50l5 5 10-10" stroke="#7aa2ff"/></svg></div>
+<div class="media shot"><img src="assets/zapling.webp" alt="Zapling app: Unit 1 lesson path with Sprig" loading="lazy" width="1600" height="1000"></div>
 <h3>Zapling</h3><p>A Duolingo-style electrical engineering learning app with a Circuit Lab, lessons, and Sprig, a built-in helper.</p>
 <div class="acts"><a class="btn" href="https://lilyofthevalley1618.github.io/zapling/" target="_blank" rel="noopener">Open Zapling ↗</a></div></article>
 <article class="proj"><div class="meta"><span>In development</span><span class="st">Game</span></div>
@@ -197,4 +202,5 @@ new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="plane.js"></script>
 <script src="arm.js"></script>
+<script src="car.js"></script>
 </body></html>
