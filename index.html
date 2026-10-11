@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lily Wong · Electrical Engineering</title>
+<style>
+  :root{--bg:#0d1117;--panel:#151b24;--line:#232c3a;--text:#e6e9ef;--muted:#9aa4b2;--accent:#5eead4;--accent2:#818cf8}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  nav{position:sticky;top:0;background:rgba(13,17,23,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 24px}
+  nav .brand{font-weight:700;letter-spacing:.5px}
+  nav ul{display:flex;gap:22px;list-style:none;font-size:.92rem}
+  nav ul a{color:var(--muted)} nav ul a:hover{color:var(--text);text-decoration:none}
+  .wrap{max-width:1000px;margin:0 auto}
+  section{padding:80px 24px;border-bottom:1px solid var(--line)}
+  .hero{padding:120px 24px 100px}
+  .hero h1{font-size:3rem;line-height:1.1;margin-bottom:12px}
+  .hero h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent}
+  .hero p.lead{font-size:1.2rem;color:var(--muted);max-width:640px}
+  .btns{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{padding:10px 18px;border-radius:8px;border:1px solid var(--line);color:var(--text);font-size:.95rem}
+  .btn.primary{background:var(--accent);color:#0d1117;border-color:var(--accent);font-weight:600}
+  .btn:hover{text-decoration:none;opacity:.9}
+  h2{font-size:1.6rem;margin-bottom:8px}
+  .sub{color:var(--muted);margin-bottom:32px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px}
+  .card h3{font-size:1.1rem;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:.95rem}
+  .tag{display:inline-block;font-size:.75rem;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:2px 10px;margin:12px 6px 0 0}
+  .placeholder{border-style:dashed;opacity:.75}
+  .placeholder h3::after{content:" · placeholder";color:#f59e0b;font-size:.75rem;font-weight:400}
+  .skills{display:flex;flex-wrap:wrap;gap:10px}
+  .skills span{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-size:.9rem}
+  .timeline .item{border-left:2px solid var(--line);padding:0 0 24px 20px;position:relative}
+  .timeline .item::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+  .timeline .item small{color:var(--muted)}
+  footer{padding:40px 24px;text-align:center;color:var(--muted);font-size:.9rem}
+  @media(max-width:640px){nav ul{display:none}.hero h1{font-size:2.2rem}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><div class="brand">Lily Wong</div>
+<ul><li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li><li><a href="#research">Research</a></li><li><a href="#resume">Resume</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
+
+<header class="hero"><div class="wrap">
+  <h1>Hi, I'm Lily.<br><span>Electrical engineering student.</span></h1>
+  <p class="lead">I study electrical engineering at Irvine Valley College and build learning tools and apps on the side. I'm interested in digital design, PCB design, and AI.</p>
+  <div class="btns"><a class="btn primary" href="#projects">See my projects</a><a class="btn" href="#resume">Resume</a><a class="btn" href="https://github.com/lilyofthevalley1618">GitHub</a></div>
+</div></header>
+
+<section id="about"><div class="wrap">
+  <h2>About</h2>
+  <p class="sub">Irvine, CA · Electrical engineering pathway at IVC, finishing May 2028, then transferring to a UC.</p>
+  <div class="timeline">
+    <div class="item"><strong>Irvine Valley College</strong> · Electrical Engineering pathway<br><small>2026 – expected May 2028</small></div>
+    <div class="item"><strong>California Certificate of Proficiency (HiSET)</strong><br><small>May 2026</small></div>
+  </div>
+  <h3 style="margin:24px 0 12px">Skills and interests</h3>
+  <div class="skills"><span>Digital design</span><span>PCB design</span><span>Schematics</span><span>MATLAB</span><span>AI</span><span>App building with AI tools</span></div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2>Projects</h2>
+  <p class="sub">Apps I've designed and built by directing AI tools.</p>
+  <div class="grid">
+    <div class="card"><h3>Zapling</h3><p>A Duolingo-style app for learning electrical engineering, with a Circuit Lab, bite-size lessons, and Sprig, a built-in helper.</p><span class="tag">EE education</span><span class="tag">Web app</span><p style="margin-top:14px"><a href="https://lilyofthevalley1618.github.io/">Open Zapling</a></p></div>
+    <div class="card"><h3>Electrical Components Game</h3><p>A game that teaches the parts of a circuit (resistors, capacitors, transistors, and more).</p><span class="tag">Game</span><span class="tag">EE education</span><p style="margin-top:14px;color:#f59e0b;font-size:.85rem">Link and details to come</p></div>
+  </div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <h2>Experience</h2><p class="sub">Work, internships, and leadership.</p>
+  <div class="grid"><div class="card placeholder"><h3>Role title</h3><p>Organization · Dates<br>One or two lines on what you did and what you learned.</p></div></div>
+</div></section>
+
+<section id="research"><div class="wrap">
+  <h2>Engineering research</h2><p class="sub">Research and independent investigations.</p>
+  <div class="grid"><div class="card placeholder"><h3>Research topic</h3><p>Where and when · What question you explored, what you did, and what you found.</p></div></div>
+</div></section>
+
+<section id="resume"><div class="wrap">
+  <h2>Resume</h2><p class="sub">A downloadable PDF will go here once it's ready.</p>
+  <div class="card placeholder"><h3>Resume PDF</h3><p>Upload resume.pdf and this becomes a download button.</p></div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <h2>Contact</h2><p class="sub">Open to internships and research opportunities.</p>
+  <div class="btns"><a class="btn primary" href="mailto:lilypop1618@gmail.com">lilypop1618@gmail.com</a><a class="btn" href="https://github.com/lilyofthevalley1618">GitHub</a></div>
+</div></section>
+
+<footer>© 2026 Lily Wong</footer>
+</body></html>
