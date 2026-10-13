@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Lily Wong — Electrical Engineering</title>
 <meta name="description" content="Lily Wong — electrical engineering student at Irvine Valley College.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect x=%224%22 y=%224%22 width=%228%22 height=%228%22 fill=%22%23a77bff%22/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect x=%220.8%22 y=%220.8%22 width=%2214.4%22 height=%2214.4%22 rx=%221.6%22 fill=%22%23a77bff%22/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#000;--panel:#0a0910;--line:#1d1a26;--line2:#2c2838;--white:#f2f0f7;--grey:#8c889a;--grey2:#5c586a;
@@ -13,8 +13,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--sans);font-weight
 .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,4vw,56px);position:relative;z-index:2}
 .mono{font-family:var(--mono)}
 nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:none}
-.logo{display:flex;align-items:center;gap:10px;font-size:.92rem;font-weight:500}.logo i{width:8px;height:8px;background:var(--accent);box-shadow:0 0 10px var(--glow)}
+nav .wrap{display:flex;align-items:center;justify-content:flex-end;height:60px;max-width:none}
 nav ul{display:flex;gap:30px;list-style:none}nav a{font-size:.86rem;color:#d6d2e2;position:relative;transition:color .25s}
 nav ul a::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:var(--accent);transition:width .3s cubic-bezier(.2,.8,.2,1)}
 nav ul a:hover{color:#fff}nav ul a:hover::after,nav ul a.on::after{width:100%}
@@ -28,7 +27,6 @@ mask-image:radial-gradient(ellipse 70% 70% at 65% 45%,#000 0%,rgba(0,0,0,.3) 55%
 .viewport{position:absolute;inset:76px 30px 30px;pointer-events:none}
 .viewport .c{position:absolute;width:20px;height:20px;border:1px solid var(--line2)}
 .c.tl{top:0;left:0;border-right:0;border-bottom:0}.c.tr{top:0;right:0;border-left:0;border-bottom:0}.c.bl{bottom:0;left:0;border-right:0;border-top:0}.c.br{bottom:0;right:0;border-left:0;border-top:0}
-.vp-label{position:absolute;top:-4px;left:50%;transform:translateX(-50%);font:400 .64rem var(--mono);letter-spacing:.24em;color:var(--accent);opacity:.7;background:#0b0912;padding:2px 8px;border:1px solid var(--line)}
 .hero .wrap{position:relative;z-index:2}
 .hero h1{font-family:var(--display);font-weight:600;font-size:clamp(3rem,6.4vw,5.6rem);line-height:1;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
 .hero h1,.hero .sub>*{opacity:0;transform:translateY(22px);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards}
@@ -105,12 +103,12 @@ section{position:relative;padding:120px 0;border-top:1px solid var(--line)}
 .links a .v{font-size:1.02rem}.links a .arr{color:var(--grey2);transition:transform .3s,color .3s}
 .links a:hover{background:var(--dim)}.links a:hover .arr{transform:translateX(6px);color:var(--accent)}
 footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex;justify-content:space-between;font-size:.74rem;color:var(--grey2)}
-@media (max-width:880px){nav ul{display:none}.hero h1{white-space:normal}
+@media (max-width:880px){nav ul{gap:12px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;max-width:100%}nav ul::-webkit-scrollbar{display:none}nav a{font-size:.7rem}nav .wrap{justify-content:flex-start}.hero h1{white-space:normal}
 .about,.contact,.entry,.projects{grid-template-columns:1fr}.proj{border-right:0;border-bottom:1px solid var(--line2)}.spec{margin-top:20px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.hero h1,.hero .sub>*{opacity:1;transform:none}html{scroll-behavior:auto}}
 @media (max-width:880px){.sat-bg{opacity:.5}}
 </style></head><body>
-<nav><div class="wrap"><a href="#top" class="logo"><i></i>L. Wong</a>
+<nav><div class="wrap">
 <ul><li><a href="#about">About</a></li><li><a href="#experience">Education &amp; Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#research">Research</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
 
 <header class="hero" id="top">
@@ -122,7 +120,7 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
  <g class="tr" stroke="#7aa2ff" opacity=".55"><path d="M700 420h120l40-40h80"/><path d="M760 560h140l30 30h120"/><path d="M1180 200h-70l-30-30h-60"/></g>
 </svg>
 <div class="uav-bg sat-bg" id="satScene" aria-hidden="true"></div>
-<div class="viewport" aria-hidden="true"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i><span class="vp-label">FIG. 01 — L. WONG</span></div>
+<div class="viewport" aria-hidden="true"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i></div>
 <div class="wrap" style="max-width:none;margin:0;padding-left:clamp(24px,6vw,96px)"><h1>Lily Wong</h1>
 <p class="sub"><b>Electrical Engineering</b><span>Student at Irvine Valley College</span>
 <em><a class="btn solid" href="#projects">View projects →</a><a class="btn" href="#contact">Contact</a></em></p></div>
