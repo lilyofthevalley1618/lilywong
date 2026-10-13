@@ -108,9 +108,9 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 .screen img{position:absolute;top:0;left:-100%;width:300%;height:auto;display:block}
 .demo{border:1px solid var(--line2);background:#0a0812;padding:18px;display:flex;flex-direction:column;gap:14px;min-height:384px}
 .demo-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.demo-top b{font-family:var(--display);font-weight:500;font-size:1.05rem}.xp{font:400 .72rem var(--mono);color:var(--accent);white-space:nowrap}.xp i{font-style:normal}
-.lessons{list-style:none;margin:0;padding:0;display:grid;gap:8px}.lessons li{display:flex;align-items:center;gap:12px;padding:9px 12px;border:1px solid var(--line);font-size:.9rem;color:#d6d2e2}
+.lessons{list-style:none;margin:0;padding:0;display:grid;gap:8px}.lessons li{border:1px solid var(--line)}.lessons button{width:100%;display:flex;align-items:center;gap:12px;padding:9px 12px;background:transparent;border:0;font:inherit;font-size:.9rem;color:#d6d2e2;text-align:left;cursor:pointer;transition:background .2s}.lessons button:hover,.lessons button:focus-visible{background:rgba(167,123,255,.1);outline:1px solid var(--accent);outline-offset:-1px}
 .lessons span{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:500 .7rem var(--mono);border:1px solid var(--line2)}
-.lessons .done span{background:var(--accent);border-color:var(--accent);color:#000}.lessons .cur{border-color:var(--accent);box-shadow:inset 0 0 0 1px rgba(167,123,255,.3)}.lessons .cur span{border-color:var(--accent);color:var(--accent)}.lessons .lock{opacity:.45}
+.lessons .done span{background:var(--accent);border-color:var(--accent);color:#000}.lessons .cur{border-color:var(--accent);box-shadow:inset 0 0 0 1px rgba(167,123,255,.3)}.lessons .cur span{border-color:var(--accent);color:var(--accent)}.lessons .lock button{color:#9e99ad}.qhead{display:flex;align-items:center;gap:10px;margin-bottom:10px;font:400 .68rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}.qhead #zqt{color:var(--accent);flex:1;min-width:0}.back{background:transparent;border:1px solid var(--line2);color:var(--soft);font:inherit;letter-spacing:.1em;padding:5px 9px;cursor:pointer}.back:hover,.back:focus-visible{border-color:var(--accent);color:#fff;outline:none}.opts button:focus-visible{outline:1px solid var(--accent);outline-offset:1px}
 .quiz .q{margin:0 0 10px;font-size:.92rem;line-height:1.5}.opts{display:grid;gap:8px}.opts button{text-align:left;padding:9px 12px;border:1px solid var(--line2);background:transparent;color:var(--white);font:400 .86rem var(--body,inherit);cursor:pointer;transition:.2s}
 .opts button:hover{border-color:var(--accent)}.opts .ok{border-color:#5fd39a;color:#8ff0bf}.opts .no{border-color:#ff6b8a;color:#ff9db1}.fb{min-height:1.4em;margin:10px 0 0;font:400 .76rem var(--mono);letter-spacing:.05em;color:var(--soft)}
 .demo .play{align-self:flex-start;margin-top:auto}
@@ -119,9 +119,14 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 @media (max-width:640px){.feat-grid{grid-template-columns:1fr}.demo{min-height:0}}
 .nlogo{display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:500;color:var(--white);white-space:nowrap}.nlogo .nl-ic{display:inline-block;flex:none;height:1.5em;width:1.5em;margin:0;filter:drop-shadow(0 0 4px rgba(167,123,255,.85)) drop-shadow(0 0 10px rgba(167,123,255,.4))}
 .hero-lily{display:inline-block;height:1em;width:1em;margin-left:.12em;vertical-align:-.08em;filter:drop-shadow(0 0 8px rgba(167,123,255,.85)) drop-shadow(0 0 20px rgba(167,123,255,.4))}
-.res-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}.res-btns .btn{border-color:var(--accent);color:var(--accent)}.res-btns .btn.solid{color:#000}.res-btns .btn.solid:hover{color:var(--accent)}.res-btns .btn:hover{background:var(--dim)}
-.res-lbl{display:block;font:400 .66rem var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--grey)}
-.res-card{border:1px solid var(--line2);padding:22px;background:#0a0812}.res-card b{font-family:var(--display);font-weight:500;font-size:1.1rem}.res-card p{margin:6px 0 4px;color:var(--grey);font-size:.9rem}
+.res-big{display:inline-flex;align-items:center;gap:14px;padding:20px 46px;border:2px solid var(--accent);background:transparent;color:var(--white);font:500 .95rem var(--mono);letter-spacing:.32em;text-transform:uppercase;position:relative;overflow:hidden;transition:background .35s,box-shadow .35s,color .35s,transform .35s}
+.res-big span{color:var(--accent);transition:transform .35s}
+.res-big:hover,.res-big:focus-visible{background:rgba(167,123,255,.14);box-shadow:0 0 0 1px rgba(167,123,255,.25),0 0 34px rgba(167,123,255,.45);color:#fff;outline:none}
+.res-big:hover span,.res-big:focus-visible span{transform:translate(3px,-3px)}
+.res-dl{font:400 .68rem var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--grey);border-bottom:1px solid transparent;transition:.25s}.res-dl:hover,.res-dl:focus-visible{color:var(--accent);border-color:var(--accent);outline:none}
+@media (max-width:480px){.res-big{padding:16px 30px;font-size:.82rem;letter-spacing:.26em}}
+#zapDemo [hidden]{display:none!important}
+.fdesc .zap-note{margin-top:12px;font:400 .74rem/1.6 var(--mono);letter-spacing:.03em;color:var(--grey2);max-width:38ch}
 </style></head><body>
 <nav><div class="wrap"><a href="#top" class="nlogo" aria-label="Lily Wong — home"><svg class="nl-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 14 Q9.5 19 11 23.5" fill="none" stroke="#9c7ae6" stroke-width="1.1" stroke-linecap="round"/><path d="M10.4 19.5 Q5 18.5 3.5 21.5 Q7.5 22 10.5 20.3Z" fill="#8f6fdc" fill-opacity=".8"/><g fill="#d9c6ff" stroke="#b896ff" stroke-width=".5" stroke-linejoin="round"><path d="M10.5 14.0 Q11.5 6.8 8.2 2.4 Q5.1 9.1 10.5 14.0 Z" fill-opacity="0.5"/><path d="M10.5 14.0 Q17.9 11.1 18.2 3.3 Q13.0 6.4 10.5 14.0 Z" fill-opacity="0.5"/><path d="M10.5 14.0 Q8.1 8.0 3.6 6.9 Q4.1 13.9 10.5 14.0 Z" fill-opacity="0.9"/><path d="M10.5 14.0 Q15.0 7.8 14.1 2.1 Q8.2 6.7 10.5 14.0 Z" fill-opacity="0.9"/><path d="M10.5 14.0 Q17.3 16.1 21.1 9.5 Q15.8 9.1 10.5 14.0 Z" fill-opacity="0.9"/><path d="M10.5 14.0 Q12.1 18.3 16.7 15.8 Q15.0 13.0 10.5 14.0 Z" fill-opacity="0.8"/></g><path d="M10.5 14.6 Q8 11 7 8.5 Q11 6.5 15.5 9 Q13.5 12 10.5 14.6Z" fill="#cdb4ff" fill-opacity=".9" stroke="#b896ff" stroke-width=".5"/><path d="M8.3 9.6 Q11 8.4 14 9.8" fill="none" stroke="#f6efff" stroke-width=".6" stroke-opacity=".8"/><g fill="none" stroke="#f3eaff" stroke-width=".55" stroke-linecap="round"><path d="M10.8 12.5 Q13.0 9.0 15.5 6.0"/><path d="M10.8 12.5 Q14.0 10.0 17.5 7.5"/><path d="M10.8 12.5 Q12.0 8.0 13.5 4.8"/></g><g fill="#fff6c9"><circle cx="15.5" cy="6.0" r=".95"/><circle cx="17.5" cy="7.5" r=".95"/><circle cx="13.5" cy="4.8" r=".95"/></g></svg><span>Lily Wong</span></a>
 <ul><li><a href="#about">About</a></li><li><a href="#experience">Education &amp; Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#research">Research</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
@@ -164,7 +169,7 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 03 — EDUCATION &amp; EXPERIENCE</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
 <div class="wrap"><div class="sec-head reveal"><h2>Education and experience.</h2>
 <div style="margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:8px">
-<span class="res-lbl">Official resume</span><span class="res-btns"><a class="btn solid" href="Lily_Wong_Resume.pdf" target="_blank" rel="noopener">View resume ↗</a><a class="btn" href="Lily_Wong_Resume.pdf" download="Lily_Wong_Resume.pdf">Download ↓</a></span>
+<a class="res-big" href="Lily_Wong_Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a><a class="res-dl" href="Lily_Wong_Resume.pdf" download="Lily_Wong_Resume.pdf">Download PDF ↓</a>
 </div></div>
 <div class="exp-grid"><div>
 <div class="entry reveal"><div class="when">Present — May 2028</div><div><h3>Irvine Valley College</h3><div class="org">Electrical Engineering pathway · then UC transfer</div>
@@ -183,20 +188,20 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 <div class="feat-grid">
 <figure class="fcol"><div class="phone"><div class="notch"></div><div class="screen"><img src="assets/zapling.webp" alt="Zapling learning path screenshot: Unit 1 Electricity Essentials with completed lesson circles" loading="lazy"></div></div><figcaption>The real app</figcaption></figure>
 <figure class="fcol"><div class="demo" id="zapDemo"><div class="demo-top"><b>Try a lesson</b><span class="xp">⚡ <i id="zxp">0</i> XP</span></div>
-<ol class="lessons"><li class="done"><span>✓</span>Charge &amp; static</li><li class="done"><span>✓</span>Conductors &amp; loops</li><li class="cur"><span>3</span>Resistors &amp; LEDs</li><li class="lock"><span>4</span>Capacitors</li></ol>
-<div class="quiz" id="zq" hidden><p class="q" id="zqq"></p><div class="opts" id="zqo"></div><p class="fb" id="zfb" aria-live="polite"></p></div>
+<ol class="lessons" id="zls"><li class="done"><button type="button" data-l="0"><span>✓</span>Charge &amp; static</button></li><li class="done"><button type="button" data-l="1"><span>✓</span>Conductors &amp; loops</button></li><li class="cur"><button type="button" data-l="2"><span>3</span>Resistors &amp; LEDs</button></li><li class="lock"><button type="button" data-l="3"><span>4</span>Capacitors</button></li></ol>
+<div class="quiz" id="zq" hidden><div class="qhead"><button type="button" class="back" id="zback">← Lessons</button><span id="zqt"></span><span id="zqn"></span></div><p class="q" id="zqq"></p><div class="opts" id="zqo"></div><p class="fb" id="zfb" aria-live="polite"></p></div>
 <button class="btn solid play" id="zplay" type="button">▶ Tap to play</button></div><figcaption>Interactive demo</figcaption></figure>
 <div class="fcol fdesc"><p>Zapling is a gamified electronics-learning app I built. It turns circuits into bite-sized lessons with streaks, XP and flashcards, plus a hands-on Circuit Lab and Sprig, a built-in helper that answers questions as you go.</p>
 <ul><li>Learning path from charge basics to real circuits</li><li>Circuit Lab for building and testing loops</li><li>Streaks, XP and spaced-review flashcards</li></ul>
-<p class="open"><a class="btn solid" href="https://lilyofthevalley1618.github.io/zapling/" target="_blank" rel="noopener">Open full app ↗</a></p></div>
+<p class="open"><a class="btn solid" href="https://lilyofthevalley1618.github.io/zapling/" target="_blank" rel="noopener">Open in web browser ↗</a></p><p class="zap-note">Zapling is still in progress, so for now it runs as a website, not a downloadable app.</p></div>
 </div></div>
 </div></div></section>
 
 <section id="research">
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 05 — RESEARCH</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
-<div class="wrap"><div class="sec-head reveal"><h2>Research &amp; resume.</h2></div>
-<div class="contact reveal"><div class="ph"><b>PLACEHOLDER — RESEARCH</b>Prior engineering research: title, where, and what Lily did.</div>
-<div class="res-card"><b>Resume</b><p>My current one-page resume (PDF).</p><span class="res-btns"><a class="btn solid" href="Lily_Wong_Resume.pdf" target="_blank" rel="noopener">View resume ↗</a><a class="btn" href="Lily_Wong_Resume.pdf" download="Lily_Wong_Resume.pdf">Download ↓</a></span></div></div></div></section>
+<div class="wrap"><div class="sec-head reveal"><h2>Research.</h2></div>
+<div class="contact reveal"><div class="ph" style="grid-column:1/-1"><b>PLACEHOLDER — RESEARCH</b>Prior engineering research: title, where, and what Lily did.</div>
+</div></div></section>
 
 <section id="contact">
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 06 — CONTACT</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
@@ -215,15 +220,25 @@ var navA=document.querySelectorAll('nav ul a');
 new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)navA.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-45% 0px -50% 0px'}).observe&&document.querySelectorAll('section[id]').forEach(function(s){this.observe(s)},new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)navA.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-45% 0px -50% 0px'}));
 </script>
 <script>
-(function(){var Q=[["Which way must an LED face to light up?",["Long leg (anode) toward +","Either way works","Short leg toward +"],0],
-["What does a resistor do in an LED circuit?",["Stores charge","Limits the current","Raises the voltage"],1],
-["A capacitor mostly…",["Stores and releases charge","Glows when powered","Blocks all voltage forever"],0]];
-var i=0,xp=0,busy=false,qe=document.getElementById('zq'),qq=document.getElementById('zqq'),qo=document.getElementById('zqo'),fb=document.getElementById('zfb'),pb=document.getElementById('zplay'),xe=document.getElementById('zxp');if(!pb)return;
-function show(){var q=Q[i%Q.length];qe.hidden=false;qq.textContent=q[0];fb.textContent='';qo.innerHTML='';busy=false;
+(function(){var LS=[
+{t:"Charge & static",q:[["Rubbing a balloon on hair moves…",["Electrons","Protons","Neutrons"],0],["Two negatively charged objects will…",["Attract","Repel","Do nothing"],1],["Static shock happens when charge…",["Builds up then jumps","Is perfectly balanced","Turns into light only"],0]]},
+{t:"Conductors & loops",q:[["Which is a good conductor?",["Copper wire","Rubber band","Dry wood"],0],["Current only flows when the circuit is…",["Open","Closed in a full loop","Painted"],1]]},
+{t:"Resistors & LEDs",q:[["Which way must an LED face to light up?",["Long leg (anode) toward +","Either way works","Short leg toward +"],0],["What does a resistor do in an LED circuit?",["Stores charge","Limits the current","Raises the voltage"],1],["Ohm's law: V equals…",["I × R","I ÷ R","R ÷ I"],0]]},
+{t:"Capacitors",q:[["A capacitor mostly…",["Stores and releases charge","Glows when powered","Blocks all voltage forever"],0],["Capacitance is measured in…",["Ohms","Farads","Volts"],1]]}];
+var $=function(i){return document.getElementById(i)},ls=$('zls'),qe=$('zq'),qq=$('zqq'),qo=$('zqo'),fb=$('zfb'),pb=$('zplay'),xe=$('zxp'),qt=$('zqt'),qn=$('zqn'),bk=$('zback');if(!pb||!ls)return;
+var L=2,i=0,xp=0,busy=false,mode='list';
+function list(){mode='list';ls.hidden=false;qe.hidden=true;pb.hidden=false;pb.textContent='▶ Tap to play';var f=ls.querySelector('button[data-l="'+L+'"]');if(f)f.focus();}
+function open(l){L=l;i=0;ls.hidden=true;qe.hidden=false;mode='quiz';show();bk.focus();}
+function show(){var Q=LS[L].q,q=Q[i];qt.textContent=LS[L].t;qn.textContent=(i+1)+'/'+Q.length;qq.textContent=q[0];fb.textContent='';qo.innerHTML='';busy=false;pb.hidden=true;
  q[1].forEach(function(t,k){var b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=function(){if(busy)return;
-  if(k===q[2]){busy=true;b.classList.add('ok');xp+=10;xe.textContent=xp;fb.textContent='✓ Correct! +10 XP';pb.textContent='▶ Next question';pb.hidden=false;i++;}
-  else{b.classList.add('no');fb.textContent='✗ Not quite — try again';}};qo.appendChild(b);});pb.hidden=true;}
-pb.addEventListener('click',show);})();
+  if(k===q[2]){busy=true;b.classList.add('ok');xp+=10;xe.textContent=xp;
+   if(i<Q.length-1){fb.textContent='✓ Correct! +10 XP';pb.textContent='▶ Next question';}
+   else{fb.textContent='✓ Lesson complete! +10 XP';pb.textContent='← Back to lessons';var li=ls.children[L];li.className='done';li.querySelector('span').textContent='✓';}
+   pb.hidden=false;pb.focus();}
+  else{b.classList.add('no');fb.textContent='✗ Not quite — try again';}};qo.appendChild(b);});}
+ls.addEventListener('click',function(e){var b=e.target.closest('button[data-l]');if(b)open(+b.dataset.l);});
+bk.addEventListener('click',list);
+pb.addEventListener('click',function(){if(mode==='list'){open(L);return;}var Q=LS[L].q;if(i<Q.length-1){i++;show();qo.firstChild.focus();}else{L=Math.min(L+1,LS.length-1);list();}});})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="plane.js"></script>
