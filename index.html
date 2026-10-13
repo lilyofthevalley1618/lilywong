@@ -77,22 +77,13 @@ section{position:relative;padding:120px 0;border-top:1px solid var(--line)}
 /* contact plane */
 #contact{position:relative}.bee-plane{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.75}#contact .wrap{position:relative;z-index:2}
 /* projects */
-.car-band{position:relative;height:250px;margin:-28px 0 40px;cursor:pointer;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%)}
+.car-band{position:relative;height:250px;width:100vw;margin:-28px 0 40px calc(50% - 50vw);cursor:pointer;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(transparent,#000 22%,#000 78%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(transparent,#000 22%,#000 78%,transparent);mask-composite:intersect}
+#projects{overflow-x:clip}
 .car-band canvas{display:block;width:100%!important;height:100%!important}
 @media (max-width:880px){.car-band{height:200px}}
 
-.media.shot{background:#f4f2fe;border-color:rgba(167,123,255,.45);box-shadow:0 0 0 1px rgba(167,123,255,.15),0 0 28px rgba(167,123,255,.18)}.media.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 50%;background:#f4f2fe;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .5s;filter:saturate(.95) brightness(.92)}.proj:hover .media.shot img{transform:scale(1.05);filter:none}.proj:hover .media.shot{box-shadow:0 0 0 1px var(--accent),0 0 36px var(--glow)}
 
 
-.projects{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line2)}
-.proj{padding:26px;border-right:1px solid var(--line2);transition:background .35s;display:flex;flex-direction:column}.proj:last-child{border-right:0}
-.proj:hover{background:#08070d}
-.proj .meta{display:flex;justify-content:space-between;font:400 .74rem var(--mono);color:var(--grey);margin-bottom:22px}.proj .meta .st{color:var(--accent)}
-.media{position:relative;aspect-ratio:16/9;border:1px solid var(--line2);overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#160f28,#050409 70%)}
-.media svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.8,.2,1)}.proj:hover .media svg{transform:scale(1.04)}
-.media .lbl{position:absolute;left:14px;top:12px;font:400 .62rem var(--mono);letter-spacing:.2em;color:var(--grey);text-transform:uppercase}
-.proj h3{font-family:var(--display);font-weight:600;font-size:1.45rem;margin:24px 0 10px}.proj p{color:#a9a5b8;font-size:.96rem}
-.proj .acts{margin-top:auto;padding-top:22px;display:flex;gap:10px;flex-wrap:wrap}
 /* contact */
 .contact{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
 .contact .big{font-family:var(--display);font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.05;text-transform:uppercase;font-weight:600}
@@ -103,7 +94,7 @@ section{position:relative;padding:120px 0;border-top:1px solid var(--line)}
 .links a:hover{background:var(--dim)}.links a:hover .arr{transform:translateX(6px);color:var(--accent)}
 footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex;justify-content:space-between;font-size:.74rem;color:var(--grey2)}
 @media (max-width:880px){nav ul{gap:12px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;max-width:100%}nav ul::-webkit-scrollbar{display:none}nav a{font-size:.7rem}nav .wrap{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:8px;row-gap:8px;justify-content:flex-start}nav ul{width:100%}.nlogo{font-size:.86rem}.hero h1{white-space:normal}
-.about,.contact,.entry,.projects{grid-template-columns:1fr}.proj{border-right:0;border-bottom:1px solid var(--line2)}.spec{margin-top:20px}}
+.about,.contact,.entry{grid-template-columns:1fr}.spec{margin-top:20px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.hero h1,.hero .sub>*{opacity:1;transform:none}html{scroll-behavior:auto}}
 @media (max-width:880px){.sat-bg{opacity:.5}}
 
@@ -128,6 +119,9 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 @media (max-width:640px){.feat-grid{grid-template-columns:1fr}.demo{min-height:0}}
 .nlogo{display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:500;color:var(--white);white-space:nowrap}.nlogo .nl-ic{display:inline-block;flex:none;height:1.5em;width:1.5em;margin:0;filter:drop-shadow(0 0 4px rgba(167,123,255,.85)) drop-shadow(0 0 10px rgba(167,123,255,.4))}
 .hero-lily{display:inline-block;height:1em;width:1em;margin-left:.12em;vertical-align:-.08em;filter:drop-shadow(0 0 8px rgba(167,123,255,.85)) drop-shadow(0 0 20px rgba(167,123,255,.4))}
+.res-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}.res-btns .btn{border-color:var(--accent);color:var(--accent)}.res-btns .btn.solid{color:#000}.res-btns .btn.solid:hover{color:var(--accent)}.res-btns .btn:hover{background:var(--dim)}
+.res-lbl{display:block;font:400 .66rem var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--grey)}
+.res-card{border:1px solid var(--line2);padding:22px;background:#0a0812}.res-card b{font-family:var(--display);font-weight:500;font-size:1.1rem}.res-card p{margin:6px 0 4px;color:var(--grey);font-size:.9rem}
 </style></head><body>
 <nav><div class="wrap"><a href="#top" class="nlogo" aria-label="Lily Wong — home"><svg class="nl-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 14 Q9.5 19 11 23.5" fill="none" stroke="#9c7ae6" stroke-width="1.1" stroke-linecap="round"/><path d="M10.4 19.5 Q5 18.5 3.5 21.5 Q7.5 22 10.5 20.3Z" fill="#8f6fdc" fill-opacity=".8"/><g fill="#d9c6ff" stroke="#b896ff" stroke-width=".5" stroke-linejoin="round"><path d="M10.5 14.0 Q11.5 6.8 8.2 2.4 Q5.1 9.1 10.5 14.0 Z" fill-opacity="0.5"/><path d="M10.5 14.0 Q17.9 11.1 18.2 3.3 Q13.0 6.4 10.5 14.0 Z" fill-opacity="0.5"/><path d="M10.5 14.0 Q8.1 8.0 3.6 6.9 Q4.1 13.9 10.5 14.0 Z" fill-opacity="0.9"/><path d="M10.5 14.0 Q15.0 7.8 14.1 2.1 Q8.2 6.7 10.5 14.0 Z" fill-opacity="0.9"/><path d="M10.5 14.0 Q17.3 16.1 21.1 9.5 Q15.8 9.1 10.5 14.0 Z" fill-opacity="0.9"/><path d="M10.5 14.0 Q12.1 18.3 16.7 15.8 Q15.0 13.0 10.5 14.0 Z" fill-opacity="0.8"/></g><path d="M10.5 14.6 Q8 11 7 8.5 Q11 6.5 15.5 9 Q13.5 12 10.5 14.6Z" fill="#cdb4ff" fill-opacity=".9" stroke="#b896ff" stroke-width=".5"/><path d="M8.3 9.6 Q11 8.4 14 9.8" fill="none" stroke="#f6efff" stroke-width=".6" stroke-opacity=".8"/><g fill="none" stroke="#f3eaff" stroke-width=".55" stroke-linecap="round"><path d="M10.8 12.5 Q13.0 9.0 15.5 6.0"/><path d="M10.8 12.5 Q14.0 10.0 17.5 7.5"/><path d="M10.8 12.5 Q12.0 8.0 13.5 4.8"/></g><g fill="#fff6c9"><circle cx="15.5" cy="6.0" r=".95"/><circle cx="17.5" cy="7.5" r=".95"/><circle cx="13.5" cy="4.8" r=".95"/></g></svg><span>Lily Wong</span></a>
 <ul><li><a href="#about">About</a></li><li><a href="#experience">Education &amp; Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#research">Research</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
@@ -170,9 +164,8 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 03 — EDUCATION &amp; EXPERIENCE</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
 <div class="wrap"><div class="sec-head reveal"><h2>Education and experience.</h2>
 <div style="margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:8px">
-<!-- RESUME LINK GOES HERE: replace href="#" with the resume PDF (e.g. href="Lily_Wong_Resume.pdf" target="_blank"), remove aria-disabled/onclick/style, and delete the "coming soon" note -->
-<a class="btn" href="#" aria-disabled="true" title="Coming soon" onclick="return false" style="opacity:.6;cursor:not-allowed">Official Resume ↓</a>
-<span class="mono" style="font-size:.64rem;letter-spacing:.2em;color:var(--grey2);text-transform:uppercase">Coming soon</span></div></div>
+<span class="res-lbl">Official resume</span><span class="res-btns"><a class="btn solid" href="Lily_Wong_Resume.pdf" target="_blank" rel="noopener">View resume ↗</a><a class="btn" href="Lily_Wong_Resume.pdf" download="Lily_Wong_Resume.pdf">Download ↓</a></span>
+</div></div>
 <div class="exp-grid"><div>
 <div class="entry reveal"><div class="when">Present — May 2028</div><div><h3>Irvine Valley College</h3><div class="org">Electrical Engineering pathway · then UC transfer</div>
 <div class="ph"><b>PLACEHOLDER — COURSEWORK</b>Relevant courses, honors, or clubs.</div>
@@ -197,23 +190,13 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 <ul><li>Learning path from charge basics to real circuits</li><li>Circuit Lab for building and testing loops</li><li>Streaks, XP and spaced-review flashcards</li></ul>
 <p class="open"><a class="btn solid" href="https://lilyofthevalley1618.github.io/zapling/" target="_blank" rel="noopener">Open full app ↗</a></p></div>
 </div></div>
-<div class="projects reveal">
-<article class="proj"><div class="meta"><span>Live</span><span class="st">Web app</span></div>
-<div class="media shot"><img src="assets/zapling.webp" alt="Zapling app: Unit 1 lesson path with Sprig" loading="lazy" width="3358" height="1789"></div>
-<h3>Zapling</h3><p>A Duolingo-style electrical engineering learning app with a Circuit Lab, lessons, and Sprig, a built-in helper.</p>
-<div class="acts"><a class="btn" href="https://lilyofthevalley1618.github.io/zapling/" target="_blank" rel="noopener">Open Zapling ↗</a></div></article>
-<article class="proj"><div class="meta"><span>In development</span><span class="st">Game</span></div>
-<div class="media"><span class="lbl">Components game</span>
-<svg viewBox="0 0 320 180" fill="none" stroke="#a77bff"><g opacity=".75"><rect x="40" y="60" width="60" height="60" rx="4"/><path d="M58 90h24l-12-14z"/><rect x="130" y="60" width="60" height="60" rx="4"/><path d="M145 90h8l4-8 6 16 6-16 4 8h4"/><rect x="220" y="60" width="60" height="60" rx="4"/><path d="M240 76v28M250 76v28M226 90h14M250 90h14"/></g><text x="160" y="150" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#7aa2ff" stroke="none" letter-spacing="2">MATCH THE PART</text></svg></div>
-<h3>Electrical Components Game</h3><p>A game that teaches circuit parts.</p>
-<div class="acts"><span class="btn" style="opacity:.55;cursor:default">Link coming soon</span></div></article>
 </div></div></section>
 
 <section id="research">
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 05 — RESEARCH</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
 <div class="wrap"><div class="sec-head reveal"><h2>Research &amp; resume.</h2></div>
 <div class="contact reveal"><div class="ph"><b>PLACEHOLDER — RESEARCH</b>Prior engineering research: title, where, and what Lily did.</div>
-<div class="ph"><b>PLACEHOLDER — RESUME</b>A "Download resume" button appears here once the PDF is ready.</div></div></div></section>
+<div class="res-card"><b>Resume</b><p>My current one-page resume (PDF).</p><span class="res-btns"><a class="btn solid" href="Lily_Wong_Resume.pdf" target="_blank" rel="noopener">View resume ↗</a><a class="btn" href="Lily_Wong_Resume.pdf" download="Lily_Wong_Resume.pdf">Download ↓</a></span></div></div></div></section>
 
 <section id="contact">
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 06 — CONTACT</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>

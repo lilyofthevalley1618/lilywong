@@ -81,7 +81,7 @@ var sp2=new THREE.Vector3();hero.addEventListener('pointermove',function(e){if(e
 function ez(k,dt){return 1-Math.exp(-k*dt);}
 var hw=10,hh=6,mob=false;
 function size(){var w=box.clientWidth,h=box.clientHeight;if(!w||!h)return;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix();
- hh=Math.tan(C.fov*Math.PI/360)*C.position.z;hw=hh*C.aspect;mob=w<880;sat.scale.setScalar(mob?.55:1);}
+ hh=Math.tan(C.fov*Math.PI/360)*C.position.z;hw=hh*C.aspect;mob=w<880;sat.scale.setScalar(mob?.45:.82);}
 size();new ResizeObserver(size).observe(box);
 var visible=false,last=0,T=0,px=6,py=1,vx=0,vy=0,yaw=0,pit=0,dyaw=0,dpit=0,ray=new THREE.Vector3(),tgt=new THREE.Vector3(),wp=new THREE.Vector3(),wq=new THREE.Quaternion(),fwd=new THREE.Vector3(),raf=0;
 function frame(now){if(!visible){raf=0;return;}raf=requestAnimationFrame(frame);
