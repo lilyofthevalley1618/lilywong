@@ -7,14 +7,14 @@ new ResizeObserver(size).observe(sec);size();
 var TN=420,hx=new Float32Array(TN),hy=new Float32Array(TN),hn=0,hi=0;
 // path = forward wave + full 360-degree loops, parametrised by travelled distance d
 var p={};function newPath(){p.base=H*(.35+Math.random()*.3);p.drift=(Math.random()-.5)*H*.3;p.a1=H*(.06+Math.random()*.08);p.f1=.004+Math.random()*.004;p.a2=8+Math.random()*14;p.f2=.009+Math.random()*.008;p.ph=Math.random()*6.28;
- p.speed=165+Math.random()*35;p.loops=[];var n=2+Math.floor(Math.random()*2),xs=[],gap=W*(n>2?.2:.28);
+ p.speed=165+Math.random()*35;p.loops=[];var n=2,xs=[],gap=W*.28;
  for(var t=0;t<60&&xs.length<n;t++){var x=W*(.12+Math.random()*.76);if(xs.every(function(v){return Math.abs(v-x)>gap}))xs.push(x);}if(xs.length<2){xs=[W*.3,W*.68];}
- xs.sort(function(a,b){return a-b});var acc=0;xs.forEach(function(x){var R=Math.min(24+Math.random()*14,H*.1);p.loops.push({x:x,R:R,d0:x+60+acc,L:2*Math.PI*R});acc+=2*Math.PI*R;});
+ xs.sort(function(a,b){return a-b});var acc=0,dirs=Math.random()<.5?[1,-1]:[-1,1];xs.forEach(function(x,xi){var R=Math.min(24+Math.random()*14,H*.1);p.loops.push({x:x,R:R,s:dirs[xi%2],d0:x+60+acc,L:2*Math.PI*R});acc+=2*Math.PI*R;});
  p.d=0;hn=0;}
 function pathY(x){var u=Math.max(0,Math.min(1,x/(W||1)));return p.base+p.drift*(u*u*(3-2*u)-.5)+p.a1*Math.sin(x*p.f1+p.ph)+p.a2*Math.sin(x*p.f2+p.ph*1.7);}
 function pos(d){var extra=0;for(var i=0;i<p.loops.length;i++){var l=p.loops[i];
   if(d<l.d0)break;
-  if(d<l.d0+l.L){var th=(d-l.d0)/l.R,y0=pathY(l.x);return [l.x+l.R*Math.sin(th),y0-l.R+l.R*Math.cos(th)];}
+  if(d<l.d0+l.L){var th=(d-l.d0)/l.R,y0=pathY(l.x);return [l.x+l.R*Math.sin(th),y0-l.s*(l.R-l.R*Math.cos(th))];}
   extra+=l.L;}
  var x=d-60-extra;return [x,pathY(x)];}
 newPath();
