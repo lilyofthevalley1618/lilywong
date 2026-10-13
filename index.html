@@ -60,15 +60,9 @@ section{position:relative;padding:120px 0;border-top:1px solid var(--line)}
 .spec>div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:18px 20px;border-bottom:1px solid var(--line)}.spec>div:last-child{border:0}
 .spec .k{font:400 .66rem var(--mono);letter-spacing:.12em;color:var(--grey);text-transform:uppercase;padding-top:3px}.spec .v{font-size:.92rem}
 /* timeline */
-.entry{display:grid;grid-template-columns:240px 1fr;gap:40px;padding:34px 0;border-top:1px solid var(--line);transition:background .3s}
-.entry:hover{background:linear-gradient(90deg,var(--dim),transparent 60%)}
-.entry .when{font:400 .78rem var(--mono);color:var(--accent);letter-spacing:.06em;padding-left:14px}
-.entry h3{font-family:var(--display);font-weight:600;font-size:1.35rem}.entry .org{color:var(--soft);font-size:.95rem;margin:2px 0 10px}.entry p{color:#a9a5b8;max-width:640px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.tags span{font:400 .7rem var(--mono);letter-spacing:.06em;padding:5px 10px;border:1px solid var(--line2);color:#cfcadb;transition:.25s}.tags span:hover{border-color:var(--accent);color:var(--accent)}
 .ph{border:1px dashed var(--line2);padding:22px;color:var(--grey);font:400 .82rem var(--mono);letter-spacing:.04em;background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(167,123,255,.03) 10px 20px)}
 .ph b{color:var(--accent);font-weight:500;letter-spacing:.14em;display:block;margin-bottom:6px;font-size:.68rem}
 .exp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:36px;align-items:start}
-.exp-grid .entry{grid-template-columns:130px 1fr;gap:22px;background:rgba(4,3,8,.94);position:relative;z-index:3}
 .arm-box{position:sticky;top:80px;height:min(720px,calc(100vh - 100px));border:1px solid var(--line2);background:radial-gradient(ellipse at 50% 70%,#120c22,#020104 75%);cursor:crosshair;overflow:hidden}
 .arm-box canvas{display:block;width:100%!important;height:100%!important}
 .arm-box .lbl{position:absolute;left:14px;top:12px;font:400 .62rem var(--mono);letter-spacing:.2em;color:var(--grey);z-index:2;pointer-events:none}
@@ -127,6 +121,13 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 @media (max-width:480px){.res-big{padding:16px 30px;font-size:.82rem;letter-spacing:.26em}}
 #zapDemo [hidden]{display:none!important}
 .fdesc .zap-note{margin-top:12px;font:400 .74rem/1.6 var(--mono);letter-spacing:.03em;color:var(--grey2);max-width:38ch}
+.edu-h{font:400 .74rem var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--white);margin:0 0 14px}.edu-h span{color:var(--accent);margin-right:12px}
+.edu-card{border:1px solid var(--line2);background:rgba(4,3,8,.94);position:relative;z-index:3}
+.edu-row{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:20px 22px}.edu-row+.edu-row{border-top:1px solid var(--line2)}
+.edu-row h3{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0}.edu-prog{margin:6px 0 0;color:var(--accent);font-size:.9rem}
+.edu-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;font:400 .74rem var(--mono);letter-spacing:.08em;color:#bdb8cc;white-space:nowrap;text-align:right}
+.exp-grid .arm-box{height:min(460px,calc(100vh - 120px))}
+@media (max-width:560px){.edu-row{flex-direction:column;gap:10px}.edu-meta{align-items:flex-start;text-align:left;flex-direction:row;gap:14px;flex-wrap:wrap}}
 </style></head><body>
 <nav><div class="wrap"><a href="#top" class="nlogo" aria-label="Lily Wong — home"><svg class="nl-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 14 Q9.5 19 11 23.5" fill="none" stroke="#9c7ae6" stroke-width="1.1" stroke-linecap="round"/><path d="M10.4 19.5 Q5 18.5 3.5 21.5 Q7.5 22 10.5 20.3Z" fill="#8f6fdc" fill-opacity=".8"/><g fill="#d9c6ff" stroke="#b896ff" stroke-width=".5" stroke-linejoin="round"><path d="M10.5 14.0 Q11.5 6.8 8.2 2.4 Q5.1 9.1 10.5 14.0 Z" fill-opacity="0.5"/><path d="M10.5 14.0 Q17.9 11.1 18.2 3.3 Q13.0 6.4 10.5 14.0 Z" fill-opacity="0.5"/><path d="M10.5 14.0 Q8.1 8.0 3.6 6.9 Q4.1 13.9 10.5 14.0 Z" fill-opacity="0.9"/><path d="M10.5 14.0 Q15.0 7.8 14.1 2.1 Q8.2 6.7 10.5 14.0 Z" fill-opacity="0.9"/><path d="M10.5 14.0 Q17.3 16.1 21.1 9.5 Q15.8 9.1 10.5 14.0 Z" fill-opacity="0.9"/><path d="M10.5 14.0 Q12.1 18.3 16.7 15.8 Q15.0 13.0 10.5 14.0 Z" fill-opacity="0.8"/></g><path d="M10.5 14.6 Q8 11 7 8.5 Q11 6.5 15.5 9 Q13.5 12 10.5 14.6Z" fill="#cdb4ff" fill-opacity=".9" stroke="#b896ff" stroke-width=".5"/><path d="M8.3 9.6 Q11 8.4 14 9.8" fill="none" stroke="#f6efff" stroke-width=".6" stroke-opacity=".8"/><g fill="none" stroke="#f3eaff" stroke-width=".55" stroke-linecap="round"><path d="M10.8 12.5 Q13.0 9.0 15.5 6.0"/><path d="M10.8 12.5 Q14.0 10.0 17.5 7.5"/><path d="M10.8 12.5 Q12.0 8.0 13.5 4.8"/></g><g fill="#fff6c9"><circle cx="15.5" cy="6.0" r=".95"/><circle cx="17.5" cy="7.5" r=".95"/><circle cx="13.5" cy="4.8" r=".95"/></g></svg><span>Lily Wong</span></a>
 <ul><li><a href="#about">About</a></li><li><a href="#experience">Education &amp; Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#research">Research</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
@@ -171,13 +172,9 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 <div style="margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:8px">
 <a class="res-big" href="Lily_Wong_Resume.pdf" target="_blank" rel="noopener">Official Resume <span aria-hidden="true">↗</span></a><a class="res-dl" href="Lily_Wong_Resume.pdf" download="Lily_Wong_Resume.pdf">Download PDF ↓</a>
 </div></div>
-<div class="exp-grid"><div>
-<div class="entry reveal"><div class="when">Present — May 2028</div><div><h3>Irvine Valley College</h3><div class="org">Electrical Engineering pathway · then UC transfer</div>
-<div class="ph"><b>PLACEHOLDER — COURSEWORK</b>Relevant courses, honors, or clubs.</div>
-<div class="tags"><span>Digital Design</span><span>PCB Design</span><span>Schematics</span><span>MATLAB</span><span>AI</span></div></div></div>
-<div class="entry reveal"><div class="when">May 2026</div><div><h3>CA Certificate of Proficiency</h3><div class="org">HiSET</div></div></div>
-<div class="entry reveal"><div class="when">— — —</div><div><h3>Experience</h3><div class="ph"><b>PLACEHOLDER — EXPERIENCE</b>Roles, internships, or volunteer work go here.</div></div></div>
-</div>
+<div class="exp-grid"><div class="edu reveal"><p class="edu-h"><span>01</span>Education</p>
+<div class="edu-card"><div class="edu-row"><div><h3>Irvine Valley College</h3><p class="edu-prog">Electrical Engineering — UC transfer pathway</p></div><div class="edu-meta"><span>Expected May 2028</span><span>Irvine, CA</span></div></div>
+<div class="edu-row"><div><h3>CA Certificate of Proficiency</h3><p class="edu-prog">HiSET</p></div><div class="edu-meta"><span>May 2026</span></div></div></div></div>
 <div class="arm-box reveal" id="armScene"><span class="lbl">FIG. 03B — 5-AXIS MANIPULATOR</span><p class="hint">◎ Move cursor to guide · click to grab</p></div></div></div></section>
 
 <section id="projects">
@@ -206,7 +203,7 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 <section id="contact">
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 06 — CONTACT</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
 <div class="wrap"><div class="contact reveal"><div><p class="big">Let's build<br><span>something.</span></p><p style="color:var(--grey);margin-top:20px;max-width:420px">Open to internships, research, and engineering projects.</p></div>
-<div class="links"><a href="mailto:lilypop1618@gmail.com"><span><span class="k">Email</span><br><span class="v">lilypop1618@gmail.com</span></span><span class="arr">→</span></a>
+<div class="links">
 <a href="mailto:lilyofthevalley1618@gmail.com"><span><span class="k">Email</span><br><span class="v">lilyofthevalley1618@gmail.com</span></span><span class="arr">→</span></a>
 <a href="https://github.com/lilyofthevalley1618" target="_blank" rel="noopener"><span><span class="k">GitHub</span><br><span class="v">lilyofthevalley1618</span></span><span class="arr">→</span></a></div></div></div></section>
 <footer><div class="wrap"><span class="mono">© 2026 Lily Wong</span><span class="mono">Irvine, CA</span></div></footer>

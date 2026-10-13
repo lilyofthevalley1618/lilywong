@@ -16,11 +16,11 @@ function part(par,geo,pos,rot,op,col){var G=new THREE.Group();G.add(new THREE.Li
 var car=new THREE.Group();
 // ---- smooth lofted body (x = forward) ----
 function interp(pts,x){if(x<=pts[0][0])return pts[0][1];for(var i=1;i<pts.length;i++){if(x<=pts[i][0]){var a=pts[i-1],b=pts[i],u=(x-a[0])/(b[0]-a[0]);u=(1-Math.cos(u*Math.PI))/2;return a[1]+(b[1]-a[1])*u;}}return pts[pts.length-1][1];}
-var TOP=[[-1.2,.36],[-1.12,.44],[-.95,.47],[-.55,.56],[-.2,.62],[.12,.6],[.42,.42],[.8,.33],[1.12,.26],[1.25,.17]];
-var BOT=[[-1.2,.2],[-1.05,.12],[1.05,.11],[1.25,.15]];
-var WID=[[-1.2,.34],[-1.0,.47],[-.7,.52],[.6,.5],[1.0,.44],[1.25,.22]];
-var CAB=[[-1.2,0],[-.85,0],[-.6,.7],[.25,.7],[.5,0],[1.3,0]];
-var NX=44,NT=36,sp=new Float32Array((NX+1)*NT*3);
+// track-car body profile (x = forward): very low, wide, cab forward
+var TOP=[[-1.2,.36],[-1.1,.4],[-.7,.42],[-.4,.47],[-.12,.5],[.12,.47],[.38,.3],[.75,.22],[1.05,.17],[1.25,.12]];
+var BOT=[[-1.2,.17],[-1.05,.1],[1.05,.09],[1.25,.11]];
+var WID=[[-1.2,.46],[-1.0,.6],[-.6,.6],[-.25,.5],[.3,.5],[.8,.55],[1.05,.5],[1.25,.36]];
+var CAB=[[-1.2,0],[-.52,0],[-.3,.66],[.22,.66],[.44,0],[1.3,0]];var NX=44,NT=36,sp=new Float32Array((NX+1)*NT*3);
 function surf(x,th){var top=interp(TOP,x),bot=interp(BOT,x),w=interp(WID,x),cab=interp(CAB,x),mid=(top+bot)/2+.02,h=(top-bot)/2;
  var c=Math.cos(th),s=Math.sin(th),up=s>0,n=up?2.4:5;var z=w*Math.sign(c)*Math.pow(Math.abs(c),2/n),y=mid+h*Math.sign(s)*Math.pow(Math.abs(s),2/n);
  if(up)z*=1-cab*.42*Math.pow(s,1.5);return [x,y,z];}
@@ -67,6 +67,21 @@ wire([[.55,.18,.25],[.9,.22,.3],[1.18,.24,.3]]);wire([[-.55,.18,-.25],[-.95,.3,-
 // headlight beams
 [.26,-.26].forEach(function(z){var core=new THREE.ConeGeometry(.14,1.1,16,1,true);core.translate(0,-.55,0);var cm=new THREE.Mesh(core,glowM(0xd9c8ff,.14));cm.rotation.z=Math.PI/2;cm.position.set(1.21,.24,z);car.add(cm);
  var cn=new THREE.ConeGeometry(.5,2.3,24,1,true);cn.translate(0,-1.15,0);var b=new THREE.Mesh(cn,skinMat(.06));b.rotation.z=Math.PI/2;b.position.set(1.21,.24,z);car.add(b);});
+// ---- track-car aero: big rear wing, splitter, canards, intakes, diffuser ----
+{var xl=[];function xs(a,b){xl.push(a[0],a[1],a[2],b[0],b[1],b[2]);}
+ function fins(n,y0,y1){for(var q=0;q<n;q++){var z=-.3+q*(.6/(n-1));xs([-1.2,y0,z],[-1.02,y1,z]);}}
+var wg2=part(car,new THREE.BoxGeometry(.26,.03,1.1),[-1.08,.62,0],[0,0,.12],.9,PUR); // big rear wing
+  part(car,new THREE.BoxGeometry(.16,.02,1.06),[-.96,.655,0],[0,0,.28],.6,PUR);
+  [1,-1].forEach(function(sd){part(car,new THREE.BoxGeometry(.32,.15,.012),[-1.03,.6,sd*.56],null,.85,PUR); // endplates
+   part(car,new THREE.BoxGeometry(.04,.2,.03),[-1.04,.5,sd*.22],[0,0,.15],.75,PUR); // swan-neck struts
+   var pts=[[-.7,.2],[-.28,.22],[-.26,.42],[-.6,.4]].map(function(q){return new THREE.Vector3(q[0],q[1],sd*.56);});
+   car.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),lineMat(PUR,.9)));
+   part(car,new THREE.BoxGeometry(.5,.012,.08),[.95,.13,sd*.42],null,.7,PUR); // canards / dive planes
+  });
+  part(car,new THREE.BoxGeometry(.2,.014,1.0),[1.2,.085,0],null,.85,PUR); // front splitter
+  [.5,.62].forEach(function(x){xs([x,.3,-.28],[x,.3,.28]);}); // bonnet vents
+  fins(7,.1,.22);
+ var xg=new THREE.BufferGeometry();xg.setAttribute('position',new THREE.Float32BufferAttribute(xl,3));car.add(new THREE.LineSegments(xg,lineMat(PUR,.75)));}
 car.scale.setScalar(1.35);scene.add(car);
 // ---- road: lane edges + dashed centre ----
 function lineX(z,op,dash){var g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-30,.012,z),new THREE.Vector3(30,.012,z)]);
@@ -80,11 +95,11 @@ var tmat=new THREE.PointsMaterial({size:.22,vertexColors:true,transparent:true,o
 var lmat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:0,blending:THREE.AdditiveBlending});var tline=new THREE.Line(tg,lmat);tline.frustumCulled=false;scene.add(tline);
 var cA=new THREE.Color(0xe6dcff),cB=new THREE.Color(PUR),cT=new THREE.Color();
 // ---- lane extent from the camera frustum ----
-var XL=6;function lane(){var d=cam.position.z,hw=Math.tan(THREE.MathUtils.degToRad(cam.fov/2))*d*cam.aspect;XL=Math.max(1.5,hw-1.9-.4);}
+var XL=6,OFF=9;function lane(){var d=cam.position.z,hw=Math.tan(THREE.MathUtils.degToRad(cam.fov/2))*d*cam.aspect;XL=Math.max(1.5,hw-1.9-.4);OFF=hw+2.6;}
 new ResizeObserver(lane).observe(host);lane();
 // ---- state ----
 var pos=new THREE.Vector3(0,0,0),yaw=0,dir=1,spd=0,boostLvl=0,boostE=0,yawRate=0,steerA=0,roll=0,pitch=0,lastSpd=0,laneZ=0,trailLive=0,t=0;
-var CRUISE=2.1,BOOST=3.0,CAP=3,pv=new THREE.Vector3();
+var CRUISE=3.1,BOOST=3.0,CAP=3,pv=new THREE.Vector3();
 for(var i=0;i<TN;i++){tp[i*3]=0;tp[i*3+1]=.42;tp[i*3+2]=0;}
 function ez(k,dt){return 1-Math.exp(-k*dt);}
 function sstep(a,b,x){x=THREE.MathUtils.clamp((x-a)/(b-a),0,1);return x*x*(3-2*x);}
@@ -96,18 +111,18 @@ var clock=new THREE.Clock();
 function frame(){requestAnimationFrame(frame);var dt=clock.getDelta();if(!visible)return;dt=Math.min(dt,1/30);t+=dt;
  scrollV*=Math.exp(-2.5*dt);
  boostLvl=Math.max(0,boostLvl-dt*.7);boostE+=(boostLvl-boostE)*ez(boostLvl>boostE?6:1.8,dt);
- // end of lane in the current direction -> ease to a stop, then turn around
- var toEnd=dir>0?XL-pos.x:pos.x+XL;
- if(toEnd<.35&&spd<.25)dir=-dir;
+ // wrap: drive fully off-screen, flip unseen, come back from the same side
+ if((dir>0&&pos.x>OFF)||(dir<0&&pos.x<-OFF)){dir=-dir;yaw=dir>0?0:Math.PI;yawRate=0;laneZ=0;trailLive=0;pos.x=dir>0?-OFF:OFF;
+  for(var j=0;j<TN;j++){tp[j*3]=pos.x;tp[j*3+2]=0;}}
  var wantYaw=dir>0?0:Math.PI,err=Math.atan2(Math.sin(wantYaw-yaw),Math.cos(wantYaw-yaw));
  var turnRate=THREE.MathUtils.clamp(err*6,-(3.2+3*boostE),3.2+3*boostE);yawRate+=(turnRate-yawRate)*ez(10,dt);yaw+=yawRate*dt;
  var aligned=Math.max(0,Math.cos(err));aligned*=aligned;
- var vt=(CRUISE+scrollV*1.5+boostE*BOOST)*aligned*sstep(.1,2.2+boostE*1.2,toEnd);
+ var vt=(CRUISE+scrollV*1.5+boostE*BOOST)*Math.max(aligned,.15);
  spd+=(vt-spd)*ez(vt>spd?2+2*boostE:3.2,dt);
  var acc=(spd-lastSpd)/Math.max(dt,1e-4);lastSpd=spd;
  // U-turn swings out of the lane a little, then settles back
  laneZ+=((Math.abs(err)>.15?Math.sin(Math.abs(err))*.7*(dir>0?-1:1):0)-laneZ)*ez(4,dt);
- pos.x+=Math.cos(yaw)*spd*dt+(Math.abs(err)>.15?Math.cos(yaw)*.35*dt:0);pos.x=THREE.MathUtils.clamp(pos.x,-XL-.3,XL+.3);pos.z=laneZ;
+ pos.x+=Math.cos(yaw)*spd*dt+(Math.abs(err)>.15?Math.cos(yaw)*.35*dt:0);pos.x=THREE.MathUtils.clamp(pos.x,-OFF-.5,OFF+.5);pos.z=laneZ;
  roll+=(THREE.MathUtils.clamp(yawRate*.03,-.08,.08)-roll)*ez(6,dt);pitch+=(THREE.MathUtils.clamp(-acc*.01,-.05,.05)-pitch)*ez(5,dt);
  car.position.copy(pos);car.rotation.set(roll,yaw,pitch,'YXZ');
  steerA+=(THREE.MathUtils.clamp(yawRate*.18,-.5,.5)-steerA)*ez(10,dt);

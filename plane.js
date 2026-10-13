@@ -55,8 +55,13 @@ sec.addEventListener('click',function(e){if(e.target.closest('a,button'))return;
 sec.addEventListener('mousemove',function(e){aimT.copy(toGround(e.clientX,e.clientY));hasMouse=true;});
 sec.addEventListener('mouseleave',function(){hasMouse=false;});
 var scrollDrift=0,lastSY=scrollY;addEventListener('scroll',function(){scrollDrift=THREE.MathUtils.clamp(scrollDrift+(scrollY-lastSY)*.004,-2,2);lastSY=scrollY;},{passive:true});
-var visible=true;new IntersectionObserver(function(en){visible=en[0].isIntersecting;}).observe(host);
 var t=0,last=performance.now(),px=0,pz=2,py=2.3;
+// on each (re-)entry, start from a random top corner (inset so it's fully visible), at most once every ~3s
+var lastReset=-1e9,cv3=new THREE.Vector3(),cr=new THREE.Raycaster(),cpl=new THREE.Plane(new THREE.Vector3(0,1,0),-2.4),chit=new THREE.Vector3();
+function cornerStart(){cam.updateMatrixWorld();var sx=Math.random()<.5?-1:1;cr.setFromCamera({x:sx*.72,y:.62},cam);if(!cr.ray.intersectPlane(cpl,chit))return;
+ px=chit.x;pz=chit.z;py=2.4;plane.position.set(px,py,pz);plane.rotation.set(0,sx>0?Math.PI:0,0,'YZX');}
+var visible=false,inView=false;new IntersectionObserver(function(en){var e=en[0],n=performance.now();visible=e.isIntersecting;
+ var now=e.intersectionRatio>=.25;if(now&&!inView&&n-lastReset>3000){lastReset=n;cornerStart();}inView=now;},{threshold:[0,.25]}).observe(host);
 function frame(now){requestAnimationFrame(frame);if(!visible){last=now;return;}
  var dt=Math.min((now-last)/1000,.05);last=now;if(!reduce)t+=dt;
  scrollDrift*=Math.pow(.3,dt);if(!hasMouse)aimT.set(Math.sin(t*.32)*6,0,Math.cos(t*.23)*3.5),aimT.y=terrH(aimT.x,aimT.z);
