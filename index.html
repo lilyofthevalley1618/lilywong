@@ -77,9 +77,8 @@ section{position:relative;padding:120px 0;border-top:1px solid var(--line)}
 /* contact plane */
 #contact{position:relative}.bee-plane{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.75}#contact .wrap{position:relative;z-index:2}
 /* projects */
-.car-band{position:relative;height:250px;margin:-28px 0 40px;border:1px solid var(--line2);background:radial-gradient(ellipse at 50% 85%,#140d26,#020104 72%);cursor:pointer;overflow:hidden}
-.car-band canvas{display:block;width:100%!important;height:100%!important}.car-band .lbl{position:absolute;left:14px;top:12px;font:400 .62rem var(--mono);letter-spacing:.2em;color:var(--grey);z-index:2;pointer-events:none}
-.car-band .hint{position:absolute;right:14px;top:10px;margin:0;z-index:2;pointer-events:none}
+.car-band{position:relative;height:250px;margin:-28px 0 40px;cursor:pointer;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%)}
+.car-band canvas{display:block;width:100%!important;height:100%!important}
 @media (max-width:880px){.car-band{height:200px}}
 
 .media.shot{background:#f4f2fe;border-color:rgba(167,123,255,.45);box-shadow:0 0 0 1px rgba(167,123,255,.15),0 0 28px rgba(167,123,255,.18)}.media.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 50%;background:#f4f2fe;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .5s;filter:saturate(.95) brightness(.92)}.proj:hover .media.shot img{transform:scale(1.05);filter:none}.proj:hover .media.shot{box-shadow:0 0 0 1px var(--accent),0 0 36px var(--glow)}
@@ -107,6 +106,27 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 .about,.contact,.entry,.projects{grid-template-columns:1fr}.proj{border-right:0;border-bottom:1px solid var(--line2)}.spec{margin-top:20px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.hero h1,.hero .sub>*{opacity:1;transform:none}html{scroll-behavior:auto}}
 @media (max-width:880px){.sat-bg{opacity:.5}}
+
+.feat{border:1px solid var(--line2);background:radial-gradient(ellipse at 20% 0%,#140d26,#050309 70%);padding:28px clamp(18px,3vw,36px) 32px;margin:0 0 40px}
+.feat-head .lbl{font:400 .62rem var(--mono);letter-spacing:.2em;color:var(--accent);text-transform:uppercase}.feat-head h3{font-family:var(--display);font-weight:600;font-size:1.6rem;margin:6px 0 22px;letter-spacing:.04em}
+.feat-grid{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.fcol{margin:0;min-width:0}.fcol figcaption{margin-top:12px;font:400 .66rem var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--grey);text-align:center}
+.phone{width:236px;padding:12px 10px 16px;border:1px solid var(--accent);border-radius:30px;background:#07050d;box-shadow:0 0 30px rgba(167,123,255,.18);position:relative;margin:0 auto}
+.phone .notch{width:70px;height:6px;border-radius:4px;background:var(--line2);margin:0 auto 10px}
+.screen{position:relative;overflow:hidden;border-radius:18px;aspect-ratio:1/1.6;background:#ece9fb}
+.screen img{position:absolute;top:0;left:-100%;width:300%;height:auto;display:block}
+.demo{border:1px solid var(--line2);background:#0a0812;padding:18px;display:flex;flex-direction:column;gap:14px;min-height:384px}
+.demo-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.demo-top b{font-family:var(--display);font-weight:500;font-size:1.05rem}.xp{font:400 .72rem var(--mono);color:var(--accent);white-space:nowrap}.xp i{font-style:normal}
+.lessons{list-style:none;margin:0;padding:0;display:grid;gap:8px}.lessons li{display:flex;align-items:center;gap:12px;padding:9px 12px;border:1px solid var(--line);font-size:.9rem;color:#d6d2e2}
+.lessons span{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:500 .7rem var(--mono);border:1px solid var(--line2)}
+.lessons .done span{background:var(--accent);border-color:var(--accent);color:#000}.lessons .cur{border-color:var(--accent);box-shadow:inset 0 0 0 1px rgba(167,123,255,.3)}.lessons .cur span{border-color:var(--accent);color:var(--accent)}.lessons .lock{opacity:.45}
+.quiz .q{margin:0 0 10px;font-size:.92rem;line-height:1.5}.opts{display:grid;gap:8px}.opts button{text-align:left;padding:9px 12px;border:1px solid var(--line2);background:transparent;color:var(--white);font:400 .86rem var(--body,inherit);cursor:pointer;transition:.2s}
+.opts button:hover{border-color:var(--accent)}.opts .ok{border-color:#5fd39a;color:#8ff0bf}.opts .no{border-color:#ff6b8a;color:#ff9db1}.fb{min-height:1.4em;margin:10px 0 0;font:400 .76rem var(--mono);letter-spacing:.05em;color:var(--soft)}
+.demo .play{align-self:flex-start;margin-top:auto}
+.fdesc p{margin:0;color:#cfcadb;line-height:1.75}.fdesc ul{margin:16px 0 0;padding-left:18px;color:var(--grey);line-height:1.8;font-size:.92rem}.fdesc .open{margin-top:22px}
+@media (max-width:1000px){.feat-grid{grid-template-columns:auto minmax(0,1fr)}.fdesc{grid-column:1/-1}}
+@media (max-width:640px){.feat-grid{grid-template-columns:1fr}.demo{min-height:0}}
+.lily-ic{display:inline-block;height:.78em;width:.78em;margin-left:.22em;vertical-align:-.02em;filter:drop-shadow(0 0 6px rgba(167,123,255,.85)) drop-shadow(0 0 14px rgba(167,123,255,.45))}
 </style></head><body>
 <nav><div class="wrap">
 <ul><li><a href="#about">About</a></li><li><a href="#experience">Education &amp; Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#research">Research</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
@@ -121,7 +141,7 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 </svg>
 <div class="uav-bg sat-bg" id="satScene" aria-hidden="true"></div>
 <div class="viewport" aria-hidden="true"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i></div>
-<div class="wrap" style="max-width:none;margin:0;padding-left:clamp(24px,6vw,96px)"><h1>Lily Wong</h1>
+<div class="wrap" style="max-width:none;margin:0;padding-left:clamp(24px,6vw,96px)"><h1>Lily Wong<svg class="lily-ic" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9c6ff" fill-opacity=".85" stroke="#b896ff" stroke-width=".6"><ellipse cx="12" cy="6.2" rx="2.6" ry="5.6" transform="rotate(0 12 12)"/><ellipse cx="12" cy="6.2" rx="2.6" ry="5.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="6.2" rx="2.6" ry="5.6" transform="rotate(120 12 12)"/><ellipse cx="12" cy="6.2" rx="2.6" ry="5.6" transform="rotate(180 12 12)"/><ellipse cx="12" cy="6.2" rx="2.6" ry="5.6" transform="rotate(240 12 12)"/><ellipse cx="12" cy="6.2" rx="2.6" ry="5.6" transform="rotate(300 12 12)"/></g><circle cx="12" cy="12" r="2.4" fill="#fbf7ff"/><circle cx="12" cy="12" r="1" fill="#e9dcff"/></svg></h1>
 <p class="sub"><b>Electrical Engineering</b><span>Student at Irvine Valley College</span>
 <em><a class="btn solid" href="#projects">View projects →</a><a class="btn" href="#contact">Contact</a></em></p></div>
 <div class="scroll-cue" aria-hidden="true">Scroll ↓</div>
@@ -164,7 +184,18 @@ footer{border-top:1px solid var(--line);padding:28px 0}footer .wrap{display:flex
 <section id="projects">
 <div class="s-corners" aria-hidden="true"><i class="tl"></i><span class="s-label">FIG. 04 — PROJECTS</span><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
 <div class="wrap"><div class="sec-head reveal"><h2>Current projects.</h2><p>Things I've built by directing AI.</p></div>
-<div class="car-band reveal" id="carScene"><span class="lbl">FIG. 04B — EV DRIVETRAIN · LANE TEST</span><p class="hint">◎ Click left or right to speed up</p></div>
+<div class="car-band reveal" id="carScene" aria-label="Car demo: click left or right of the car to speed it up"></div>
+<div class="feat reveal" id="featured"><div class="feat-head"><span class="lbl">Featured project</span><h3>Zapling</h3></div>
+<div class="feat-grid">
+<figure class="fcol"><div class="phone"><div class="notch"></div><div class="screen"><img src="assets/zapling.webp" alt="Zapling learning path screenshot: Unit 1 Electricity Essentials with completed lesson circles" loading="lazy"></div></div><figcaption>The real app</figcaption></figure>
+<figure class="fcol"><div class="demo" id="zapDemo"><div class="demo-top"><b>Try a lesson</b><span class="xp">⚡ <i id="zxp">0</i> XP</span></div>
+<ol class="lessons"><li class="done"><span>✓</span>Charge &amp; static</li><li class="done"><span>✓</span>Conductors &amp; loops</li><li class="cur"><span>3</span>Resistors &amp; LEDs</li><li class="lock"><span>4</span>Capacitors</li></ol>
+<div class="quiz" id="zq" hidden><p class="q" id="zqq"></p><div class="opts" id="zqo"></div><p class="fb" id="zfb" aria-live="polite"></p></div>
+<button class="btn solid play" id="zplay" type="button">▶ Tap to play</button></div><figcaption>Interactive demo</figcaption></figure>
+<div class="fcol fdesc"><p>Zapling is a gamified electronics-learning app I built. It turns circuits into bite-sized lessons with streaks, XP and flashcards, plus a hands-on Circuit Lab and Sprig, a built-in helper that answers questions as you go.</p>
+<ul><li>Learning path from charge basics to real circuits</li><li>Circuit Lab for building and testing loops</li><li>Streaks, XP and spaced-review flashcards</li></ul>
+<p class="open"><a class="btn solid" href="https://lilyofthevalley1618.github.io/zapling/" target="_blank" rel="noopener">Open full app ↗</a></p></div>
+</div></div>
 <div class="projects reveal">
 <article class="proj"><div class="meta"><span>Live</span><span class="st">Web app</span></div>
 <div class="media shot"><img src="assets/zapling.webp" alt="Zapling app: Unit 1 lesson path with Sprig" loading="lazy" width="3358" height="1789"></div>
@@ -198,6 +229,17 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 var navA=document.querySelectorAll('nav ul a');
 new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)navA.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-45% 0px -50% 0px'}).observe&&document.querySelectorAll('section[id]').forEach(function(s){this.observe(s)},new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)navA.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-45% 0px -50% 0px'}));
+</script>
+<script>
+(function(){var Q=[["Which way must an LED face to light up?",["Long leg (anode) toward +","Either way works","Short leg toward +"],0],
+["What does a resistor do in an LED circuit?",["Stores charge","Limits the current","Raises the voltage"],1],
+["A capacitor mostly…",["Stores and releases charge","Glows when powered","Blocks all voltage forever"],0]];
+var i=0,xp=0,busy=false,qe=document.getElementById('zq'),qq=document.getElementById('zqq'),qo=document.getElementById('zqo'),fb=document.getElementById('zfb'),pb=document.getElementById('zplay'),xe=document.getElementById('zxp');if(!pb)return;
+function show(){var q=Q[i%Q.length];qe.hidden=false;qq.textContent=q[0];fb.textContent='';qo.innerHTML='';busy=false;
+ q[1].forEach(function(t,k){var b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=function(){if(busy)return;
+  if(k===q[2]){busy=true;b.classList.add('ok');xp+=10;xe.textContent=xp;fb.textContent='✓ Correct! +10 XP';pb.textContent='▶ Next question';pb.hidden=false;i++;}
+  else{b.classList.add('no');fb.textContent='✗ Not quite — try again';}};qo.appendChild(b);});pb.hidden=true;}
+pb.addEventListener('click',show);})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="plane.js"></script>
