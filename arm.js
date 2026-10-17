@@ -2,8 +2,8 @@
 var host=document.getElementById('armScene');if(!host||!window.THREE)return;
 var PUR=0xa77bff,BLU=0x7aa2ff,GRY=0xc8c4d4,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 var scene=new THREE.Scene();scene.fog=new THREE.Fog(0x000000,14,30);
-var M=1.3,W=new THREE.Group();W.scale.setScalar(M);scene.add(W);
-var cam=new THREE.PerspectiveCamera(40,1,.1,60);cam.position.set(2.0,8.6,13.4);cam.lookAt(0,1.6,.4);
+var M=1.75,W=new THREE.Group();W.scale.setScalar(M);scene.add(W);
+var cam=new THREE.PerspectiveCamera(40,1,.1,60);cam.position.set(2.0,8.6,13.4);cam.lookAt(0,2.4,.4);
 var R=new THREE.WebGLRenderer({antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));host.appendChild(R.domElement);
 function size(){var w=host.clientWidth,h=host.clientHeight||1;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
 new ResizeObserver(size).observe(host);size();
@@ -60,8 +60,8 @@ var ndc=new THREE.Vector2(),ray=new THREE.Raycaster(),gp=new THREE.Plane(new THR
 function ground(e){var r=host.getBoundingClientRect();ndc.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(ndc,cam);var h=new THREE.Vector3();if(!ray.ray.intersectPlane(gp,h))return null;h.divideScalar(M);return clampR(h);}
 function clampR(h){var r=Math.hypot(h.x,h.z),a=Math.atan2(h.z,h.x);r=THREE.MathUtils.clamp(r,1.1,RMAX);h.set(Math.cos(a)*r,0,Math.sin(a)*r);return fit(h);}
 var RMAX=4.6,pv=new THREE.Vector3();
-function inFrame(x,y,z){pv.set(x*M,y*M,z*M).project(cam);return Math.abs(pv.x)<.86&&pv.y>-.9&&pv.y<.84;}
-function fit(h){for(var i=0;i<60;i++){if(inFrame(h.x,0,h.z)&&inFrame(h.x,1.6,h.z))break;var rr=Math.hypot(h.x,h.z);if(rr<=1.15)break;h.multiplyScalar(.97);}return h;}
+function inFrame(x,y,z){pv.set(x*M,y*M,z*M).project(cam);return Math.abs(pv.x)<.8&&pv.y>-.82&&pv.y<.8;}
+function fit(h){cam.updateMatrixWorld();for(var i=0;i<60;i++){if(inFrame(h.x,0,h.z)&&inFrame(h.x,1.6,h.z))break;var rr=Math.hypot(h.x,h.z);if(rr<=1.15)break;h.multiplyScalar(.97);}return h;}
 var mouse=null,hold=false,state='idle',goal=new THREE.Vector3(),stT=0;
 host.addEventListener('mousemove',function(e){mouse=ground(e);});host.addEventListener('mouseleave',function(){mouse=null;});
 function click(p){if(state!=='idle'&&state!=='carry')return;goal.copy(p);state=hold?'lower-drop':'lower-grab';stT=0;
